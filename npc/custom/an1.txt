@@ -1,0 +1,250 @@
+//Made by Karul
+prontera,155,190,3	script	Events	793,{
+if(getgmlevel() < 99 ) end;
+mes "Hello there GM " + strcharinfo(0) + " !";
+next;
+set .menu$, select(.gm_menu$);
+switch(.menu$) {
+		case 1: // Question & Answer
+				next;
+				mes "I will now create warps, announce, & warp you.";
+				close2;
+				warp "quiz_02",45,366;
+				Announce "There will be a 'Question & Answer' Event Held!",bc_all | bc_blue;
+				sleep2 5000;
+				Announce "If you want to join, the warp will be open in Prontera. It will be open for 1 minute!",bc_all | bc_blue;
+				sleep2 1000;
+				enablenpc "quizevent";
+				initnpctimer;
+				goto L_Timer;
+				end;
+		case 2: // Death by Dice
+				next;
+				mes "I will now create warps, announce, & warp you.";
+				close2;
+				warp "g_room1-1",55,91;
+				Announce "There will be a 'Death by Dice' Event Held!",bc_all | bc_blue;
+				sleep2 5000;
+				Announce "If you want to join, the warp will be open in Prontera. It will be open for 1 minute!",bc_all | bc_blue;
+				sleep2 1000;
+				enablenpc "diceevent";
+				initnpctimer;
+				goto L_Timer;
+				end;
+		case 3: // Bomb Porings?!
+				next;
+				mes "I will not create warps, announce, & warp you.";
+				close2;
+				warp "g_room1-1",237,270;
+				Announce "There will be a 'Bomb Porings?!' Event Held!",bc_all | bc_blue;
+				sleep2 5000;
+				Announce "If you want to join, the warp will be open in Prontera. It will be open for 1 minute!",bc_all | bc_blue;
+				sleep2 1000;
+				enablenpc "bombevent";
+				initnpctimer;
+				goto L_Timer;
+				end;
+		case 4: // Last Man Standing
+				next;
+				mes "I will now create warps, announce, & warp you.";
+				close2;
+				warp "g_room1-1",237,270;
+				Announce "There will be a 'Last Man Standing' Event Held!",bc_all | bc_blue;
+				sleep2 5000;
+				Announce "If you want to join, the warp will be open in Prontera. It will be open for 1 minute!",bc_all | bc_blue;
+				sleep2 1000;
+				enablenpc "lmsevent";
+				initnpctimer;
+				goto L_Timer;
+				end;
+		case 5: // Party vs Party
+				next;
+				mes "I will now create warps, announce, & warp you.";
+				close2;
+				warp "06guild_08",50,50;
+				Announce "There will be a 'Party vs Party' Event Held!",bc_all | bc_blue;
+				sleep2 5000;
+				Announce "If you want to join, the warp will be open in Prontera. It will be open for 1 minute!",bc_all | bc_blue;
+				sleep2 1000;
+				enablenpc "pvpevent";
+				initnpctimer;
+				goto L_Timer;
+				end;
+		case 6: // Go Pikachu!
+				next;
+				mes "I will now create warps, announce, & warp you.";
+				close2;
+				warp "quiz_02",249,365;
+				Announce "There will be a 'Go Pikachu!' Event Held!",bc_all | bc_blue;
+				sleep2 5000;
+				Announce "If you want to join, the warp will be open in Prontera. It will be open for 1 minute!",bc_all | bc_blue;
+				sleep2 1000;
+				enablenpc "pikachuevent";
+				initnpctimer;
+				goto L_Timer;
+				end;
+		case 7: // Tarot?
+				next;
+				mes "I will now create warps, announce, & warp you.";
+				close2;
+				warp "g_room1-1",230,368;
+				Announce "There will be a 'Tarot?' Event Held!",bc_all | bc_blue;
+				sleep2 5000;
+				Announce "If you want to join, the warp will be open in Prontera. It will be open for 1 minute!",bc_all | bc_blue;
+				sleep2 1000;
+				enablenpc "tarotevent";
+				initnpctimer;
+				goto L_Timer;
+				end;
+		}
+L_Timer:
+	OnTimer00000:
+		Announce "Timer has started!",bc_all;
+		end;
+		
+	OnTimer30000:
+		Announce "Thirty Seconds Have Passed By!",bc_all;
+		sleep2 5000;
+		Announce "Hurry to Prontera if you want to join!",bc_all;
+		end;
+							
+	OnTimer40000:
+		Announce "Twenty seconds left!",bc_all;
+		end;
+							
+	OnTimer50000:
+		Announce "Ten seconds left!",bc_all;
+		end;
+							
+	OnTimer55000:
+		Announce "5!",bc_all;
+		sleep2 1000;
+		Announce "4!",bc_all;
+		sleep2 1000;
+		Announce "3!",bc_all;
+		sleep2 1000;
+		Announce "2!",bc_all;
+		sleep2 1000;
+		Announce "1!",bc_all;
+		sleep2 1000;
+		Announce "0!",bc_all;
+		sleep2 1000;
+		disablenpc "quizevent";
+		disablenpc "diceevent";
+		disablenpc "bombevent";
+		disablenpc "lmsevent";
+		disablenpc "pvpevent";
+		disablenpc "pikachuevent";
+		disablenpc "tarotevent";
+		stopnpctimer;
+		end;
+		
+OnInit:
+	setarray .gmevents$,"Question & Answer","Death by Dice","Bomb Porings?!","Last Man Standing","Party vs Party!","Go Pikachu!","Tarot?";
+	for ( set .@i, 0; .@i < getarraysize(.gmevents$); set .@i, .@i +1 )
+	set .gm_menu$, .gm_menu$ + (.gmevents$[.@i]) +":";
+	disablenpc "quizevent";
+	disablenpc "diceevent";
+	disablenpc "bombevent";
+	disablenpc "lmsevent";
+	disablenpc "pvpevent";
+	disablenpc "pikachuevent";
+	disablenpc "tarotevent";
+	end;
+}
+
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// To -> Event Warps
+//== Question & Answer
+prontera,155,180,0	warp	quizevent	2,2,quiz_02,45,366
+
+//== Death by Dice
+prontera,155,180,0	warp	diceevent	2,2,g_room1-1,55,91
+
+//== Bomb Porings?!
+prontera,155,180,0	warp	bombevent	2,2,g_room1-1,237,270
+
+//== Player vs Player
+prontera,155,180,0	warp	lmsevent	2,2,g_room1-1,237,270
+
+//== Party vs Party
+prontera,155,180,0	warp	pvpevent	2,2,06guild_08,50,50;
+
+//== Go Pikachu!
+prontera,155,180,0	warp	pikachuevent	2,2,quiz_02,249,371
+
+//== Tarot?
+prontera,155,180,0	warp	tarotevent	2,2,g_room1-1,230,368
+
+
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~
+// In-Event 
+//== Question & Answer
+// "True"
+quiz_02,32,362,0	warp	quizeventroom1	2,2,quiz_02,32,357
+// "False"
+quiz_02,59,362,0	warp	quizeventroom2	2,2,quiz_02,59,357
+
+//== Death by Dice
+// Number 1~
+g_room1-1,37,84,0	warp	diceeventroom1	2,2,g_room1-1,38,73
+// Number 2~
+g_room1-1,49,84,0	warp	diceeventroom2	2,2,g_room1-1,49,73
+// Number 3~
+g_room1-1,61,84,0	warp	diceeventroom3	2,2,g_room1-1,61,73
+// Number 4~
+g_room1-1,73,84,0	warp	diceeventroom4	2,2,g_room1-1,73,73
+
+//== Bomb Poring
+// Bomb Spammer
+g_room1-1,236,276,4	script	Spammer	793,{
+
+if(getgmlevel() < 1) end;
+switch(select("Bomb Porings:Guardians:None")) {
+	case 1:
+		areamonster "g_room1-1",221,292,233,280,"Bomb Poring",1904,10,"Spammer::OnEvent";
+		areamonster "g_room1-1",221,261,233,273,"Bomb Poring",1904,10,"Spammer::OnEvent";
+		areamonster "g_room1-1",252,292,240,280,"Bomb Poring",1904,10,"Spammer::OnEvent";
+		areamonster "g_room1-1",252,261,240,273,"Bomb Poring",1904,10,"Spammer::OnEvent";
+		close;
+	case 2:
+		set .@randvar, rand(1,4);
+		if(.@randvar == 1) {
+		areamonster "g_room1-1",221,292,233,280,"Sword Guardian",1829,1,"Spammer::OnEvent";
+		} else if(.@randvar == 2) {
+		areamonster "g_room1-1",221,261,233,273,"Sword Guardian",1829,1,"Spammer::OnEvent";
+		} else if(.@randvar == 3) {
+		areamonster "g_room1-1",252,292,240,280,"Sword Guardian",1829,1,"Spammer::OnEvent";
+		} else if(.@randvar == 4) {
+		areamonster "g_room1-1",252,261,240,273,"Sword Guardian",1829,1,"Spammer::OnEvent";
+		}
+		close;
+	case 3:
+		close;
+	}
+OnEvent:
+	end;
+}
+
+//== Go Pikachu!
+-	script	Pokemon Field	793,{
+OnInit:
+setcell "quiz_02",240,367,259,367,cell_walkable,0;
+setcell "quiz_02",240,367,240,364,cell_walkable,0;
+setcell "quiz_02",259,364,259,367,cell_walkable,0;
+end;
+}
+// "Win"
+quiz_02,236,364,0	warp	pikachueventroom1	2,2,quiz_02,236,346
+// "Lose"
+quiz_02,263,364,0	warp	pikachueventroom2	2,2,quiz_02,263,346
+
+
+// == Mapflags
+// <Add Here>

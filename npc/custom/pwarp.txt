@@ -1,0 +1,97 @@
+//===== rAthena Script =======================================
+//= Market Place
+//===== By: ==================================================
+//= Lupus
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= This script should move vending crowds from Prontera
+//= streets to a suitable market place. Save your traffic 8)
+//===== Additional Comments: =================================
+//= 1.1 Optimized it, Removed labels. [Spre]
+//============================================================
+ 
+poring_w02,125,127,0	script	MarketExit	45,1,2,{
+	warp "poring_w02",170,169;
+	end;
+	}
+
+poring_w02,170,166,0	script	MarketExit	45,1,2,{
+	warp "poring_w02",125,124;
+	end;
+	}
+
+poring_w02,170,184,0	script	MarketExit	45,1,2,{
+	warp "poring_w01",112,135;
+	end;
+	}
+
+poring_w02,93,113,0	script	MarketExit	45,1,2,{
+	warp "poring_w02",104,117;
+	end;
+	}
+
+poring_w02,104,114,0	script	MarketExit	45,1,2,{
+	warp "poring_w02",93,110;
+	end;
+	}
+
+poring_w02,104,52,0	script	MarketExit	45,1,2,{
+	warp "poring_w02",93,48;
+	end;
+	}
+
+poring_w02,93,51,0	script	MarketExit	45,1,2,{
+	warp "poring_w02",104,55;
+	end;
+	}
+
+poring_w01,115,134,0	script	MarketExit	45,1,2,{
+	warp "poring_w02",96,72;
+	end;
+	}
+
+poring_w01,125,91,0	script	MarketExit	45,1,2,{
+	warp "poring_w01",109,71;
+	end;
+	}
+
+poring_w01,111,71,0	script	MarketExit	45,1,2,{
+	warp "poring_w01",123,91;
+	end;
+	}
+
+poring_w01,92,71,0	script	MarketExit	45,1,2,{
+	warp "poring_w01",80,92;
+	end;
+	}
+
+poring_w01,78,92,0	script	MarketExit	45,1,2,{
+	warp "poring_w01",94,71;
+	end;
+	}
+
+//poring_w02,99,72,0	script	Change_Save	139,1,1,{
+//OnTouch:
+//	if (Class==Job_Novice && BaseExp==0 && BaseLevel==1) {
+//		savepoint "poring_w02",99,72;
+//		set BaseExp,1; // (no need to create a new variable)
+//	}
+//	end;
+//}
+
+//Market Place settings
+poring_w02	mapflag	noteleport
+poring_w02	mapflag	nomemo
+poring_w02	mapflag	nobranch
+poring_w02	mapflag mf_noskill
+poring_w01	mapflag	noteleport
+poring_w01	mapflag	nomemo
+poring_w01	mapflag	nobranch
+poring_w01	mapflag	noskill
+setmapflag "poring_w01", mf_noskill;
+setmapflag "poring_w02", noskill;
+setmapflag "poring_w02", mf_noskill;
+

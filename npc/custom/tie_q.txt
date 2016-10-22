@@ -1,0 +1,111 @@
+poring_w01,102,129,5	script	Eddie	869,{
+	cutin "lhz_diguts02",2;
+mes "[^FF3300Eddie^000000]";
+mes "Hello";
+mes "Wants to attract girls and earn money?";
+mes "Here's the solution!";
+mes "Wear a neck tie dud..";
+switch(select("Ohh sure!","No Way!")) {
+	
+case 1:
+next;
+mes "[^FF3300Eddie^000000]";
+mes "Good...";
+mes "I can make two different colors..";
+mes "but I save red for mine!";
+mes "would you like Black or Blue?";
+goto N_N;
+
+case 2:
+cutin "lhz_diguts02",255;
+close;
+end;
+
+N_N:
+switch(select("Black Tie","Blue Tie","None")) {
+
+case 1:
+goto Black_;
+
+case 2:
+goto Blue_;
+
+case 3:
+cutin "lhz_diguts02",255;
+close;
+end;
+
+Black_:
+next;
+mes "[^FF3300Eddie^000000]";
+mes "Black Tie:";
+mes "Used attraction for a date. Enable to use Level 5 Overprice~";
+next;
+mes "[^FF3300Eddie^000000]";
+mes "You need:";
+mes "100x Soft Silk";
+mes "100X Valhalla";
+mes "10X Kiss of Angel";
+mes "1x Black Dyestuff";
+switch(select("Yes","No")) {
+
+case 1:
+	if(countitem(7166)<100 && countitem(7510)<100 && countitem(5125)<10 && countitem(983)<1)
+	goto Ins_;
+	delitem 7166,100;
+	delitem 7510,100;
+	delitem 5125,10;
+	delitem 983,1;
+	getitem 29037,1;
+	cutin "lhz_diguts02",255;
+	close;
+	
+case 2:
+	cutin "lhz_diguts02",255;
+	close;
+	end;
+
+Blue_:
+next;
+mes "[^FF3300Eddie^000000]";
+mes "Blue Tie:";
+mes "Used attraction for a date. Enable to use Level 5 Overprice~";
+next;
+mes "[^FF3300Eddie^000000]";
+mes "You need:";
+mes "100x Soft Silk";
+mes "100X Valhalla";
+mes "10X Kiss of Angel";
+mes "1x Cobalt Blue Dyestuff";
+switch(select("Yes","No")) {
+
+case 1:
+	if(countitem(7166)<100 && countitem(7510)<100 && countitem(5125)<10 && countitem(978)<1)
+	goto Ins_;
+	delitem 7166,100;
+	delitem 7510,100;
+	delitem 5125,10;
+	delitem 978,1;
+	getitem 29038,1;
+	cutin "lhz_diguts02",255;
+	close;
+	
+case 2:
+	cutin "lhz_diguts02",255;
+	close;
+	end;
+
+Ins_:
+next;
+mes "[^FF3300Eddie^000000]";
+mes "You don't have all the";
+mes "Requirements";
+cutin "lhz_diguts02",255;
+close;
+end;
+}
+}
+}
+}
+}
+

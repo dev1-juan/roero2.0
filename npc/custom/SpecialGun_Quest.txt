@@ -1,0 +1,162 @@
+poring_w02,115,30,4	script	Vash Stampede	632,{
+
+	mes "[Vash]";
+	mes "I am Vash Stampede The Best Gunner OF MY TIME";
+	mes "I can give you a powerful guns";
+	mes "Bring me Items and Ill do it!!";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Cutlass",W_cut,
+	"Deadeye",W_dead,
+	"Havoc",W_havoc,
+	"Sweeper",W_sweeper,
+	"Nothing",W_cancel;
+	
+W_cut:
+
+	next;
+	mes "-SP Consumption +50, Blinds by low chance Pierces DEF increase desperado damage by 30%";
+	mes "-Small chance to drain 5% of enemy's SP";
+	mes "-Small chance to drain 10% of your SP";
+	mes "-=THINGS YOU NEED=-";
+	mes "300x Rusty Screw";
+	mes "200x Fragment";
+	mes "100x Iron Ore";
+	mes "3x Wasteland's Outlaw[2]";
+	mes "1x Machoman's Glasses";
+	mes "1x Emperium Anvil";
+	mes "1x Vesper Core 01";
+	menu "Make",W_1,"Back to Menu",W_01;
+
+W_dead:
+
+	next;
+	mes "A very good long ranged weapon";
+	mes "-High chance to cause bleeding on the enemy";
+	mes "-Pierces Def";
+	mes "-Give Falcon Mastery Skill and level 2 Detecting Skill";
+	mes "+400% Damaged with tracking skill";
+	mes "-Grants bash skill level 7";
+	mes "-=THINGS YOU NEED=-";
+	mes "300x Jubilee";
+	mes "200x Metal Fragment";
+	mes "100x Steel";
+	mes "3x Dusk[1]";
+	mes "1x Binoculars";
+	mes "1x Emperium Anvil";
+	mes "1x Vesper Core 04";
+	menu "Make",W_2,"Back to Menu",W_01;
+
+W_havoc:
+
+	next;
+	mes "A very heavy but powerful gun";
+	mes "-Change to auto-guard self";
+	mes "-Drake Effect";
+	mes "-Chance of enemy stun when attacking";
+	mes "-Unstrippable";
+	mes "-Pierces Def";
+	mes "-=THINGS YOU NEED=-";
+	mes "300x Flexible Tube";
+	mes "200x Used Iron Plate";
+	mes "100x Emveretarcon";
+	mes "3x Butcher[1]";
+	mes "1x Wrench";
+	mes "1x Emperium Anvil";
+	mes "1x Vesper Core 03";
+	menu "Make",W_3,"Back to Menu",W_01;
+
+W_sweeper:
+
+	next;
+	mes "A great weapon for close quarter situation";
+	mes "-All shots are spread";
+	mes "-Grants level 7 bash";
+	mes "-Chance autoguard self";
+	mes "-Small chance to silence enemy";
+	mes "200% SP Consumption";
+	mes "200% Damaged with Spread shot";
+	mes "+30% Damage with Full Buster";
+	mes "Pierces DEF and adds damage on ghost";
+	mes "-=THINGS YOU NEED=-";
+	mes "300x Large Jellopy";
+	mes "200x Solid Iron Piece";
+	mes "100x Iron";
+	mes "3x Gate Keeper[0]";
+	mes "1x Blinker";
+	mes "1x Emperium Anvil";
+	mes "1x Vesper Core 02";
+	menu "Make",W_4,"Back to Menu",W_01;
+ 
+ 
+W_1:
+	if(countitem(7317)<300 || countitem(7094)<200 || countitem(1002)<100 || countitem(13107)<3 || countitem(5006)<1 || countitem(989)<1 || countitem(2659)<1)
+	goto W_insufficient; 
+	delitem 7317,300;
+	delitem 7094,200;
+	delitem 1002,100;
+	delitem 13107,3;
+	delitem 5006,1;
+	delitem 989,1;
+	delitem 2659,1;
+	getitem 13185,1;
+	close;
+
+W_2:
+	if(countitem(7312)<300 || countitem(7095)<200 || countitem(999)<100 || countitem(13153)<3 || countitem(2296)<1 || countitem(989)<1 || countitem(2662)<1)
+	goto W_insufficient; 
+	delitem 7312,300;
+	delitem 7095,200;
+	delitem 999,100;
+	delitem 13153,3;
+	delitem 2296,1;
+	delitem 989,1;
+	delitem 2662,1;
+	getitem 13184,1;
+	close;
+
+W_3:
+	if(countitem(7325)<300 || countitem(7319)<200 || countitem(1011)<100 || countitem(13159)<3 || countitem(1531)<1 || countitem(989)<1 || countitem(2661)<1)
+	goto W_insufficient; 
+	delitem 7325,300;
+	delitem 7319,200;
+	delitem 1011,100;
+	delitem 13159,3;
+	delitem 1531,1;
+	delitem 989,1;
+	delitem 2661,1;
+	getitem 13186,1;
+	close;
+
+W_4:
+	if(countitem(7126)<300 || countitem(7507)<200 || countitem(998)<100 || countitem(13156)<3 || countitem(2295)<1 || countitem(989)<1 || countitem(2660)<1)
+	goto W_insufficient; 
+	delitem 7126,300;
+	delitem 7507,200;
+	delitem 998,100;
+	delitem 13156,3;
+	delitem 2295,1;
+	delitem 989,1;
+	delitem 2660,1;
+	getitem 13187,1;
+	close;
+ 
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Vash]";
+	mes "You don't have the required materials Gunner Boi.";
+	mes "Please come back when you do...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}

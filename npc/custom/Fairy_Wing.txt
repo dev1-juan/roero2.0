@@ -1,0 +1,98 @@
+Askydun,46,112,4	script	Fairy	435,{
+
+	mes "[Fairy]";
+	mes "I can make powerful wings";
+	mes "if you bring me the right items.";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Crimson Red Arch Angel Wing",W_Crim,
+	"Aristocratic Arch Angel Wing",W_Aris,
+	"Nothing",W_cancel;
+	
+W_Crim:
+
+	next;
+	mes "Crimson Red Arch Angel Wing:";
+	mes "Created by the Anger of Red fairy";
+	mes "+15 Agi, +15 Dex, 5% powerful";
+	mes "attack and damage to demi human.";
+	mes "THINGS YOU NEED:";
+	mes "1x Bowsershell";
+	mes "2x Omega Dark Angel";
+	mes "1x AeRO Coin";
+	mes "5x Angel Wing";
+	mes "1x Helm of Angel";
+	mes "10x Fire Dragon Scale";
+	mes "100x Garnet";
+	mes "100x Red Bijou";
+	menu "Make",W_1,"Back to Menu",W_01;
+	
+	
+W_Aris:
+
+	next;
+	mes "Aristocratic Arch Angel Wing:";
+	mes "the wing of Sky Warrior";
+	mes "+15 Int, +15 Vit, 5% powerful";
+	mes "attack and damage to demi human.";
+	mes "THINGS YOU NEED:";
+	mes "1x Bowsershell";
+	mes "2x Omega Arch Angel";
+	mes "1x AeRO Coin";
+	mes "10x Evil Wing";
+	mes "100x Aquamarine";
+	mes "200x Blue Bijou";
+	menu "Make",W_2,"Back to Menu",W_01;
+ 
+
+
+
+W_1:
+	if(countitem(29014)<1 || countitem(29002)<2 || countitem(2254)<5 || countitem(5025)<1 || countitem(7451)<10 || countitem(718)<100 || countitem(7447)<100 || countitem(24999)<1)
+	goto W_insufficient; 
+	delitem 29014,1;
+	delitem 29002,2;
+	delitem 2254,5;
+	delitem 5025,1;
+	delitem 7451,10;
+	delitem 718,100;
+	delitem 7447,100;
+	delitem 24999,1;
+	getitem 29015,1;
+	close;
+	
+	
+W_2:
+	if(countitem(29014)<1 || countitem(29003)<2|| countitem(2255)<10 || countitem(720)<100 || countitem(7446)<200 || countitem(24999)<1)
+	goto W_insufficient; 
+	delitem 29014,1;
+	delitem 29003,2;
+	delitem 2255,10;
+	delitem 720,100;
+	delitem 7446,200;
+	delitem 24999,1;
+	getitem 29016,1;
+	close;	
+ 
+ 
+ 
+ 
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Fairy]";
+	mes "You don't have the required materials.";
+	mes "Please come back when you do...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}

@@ -1,0 +1,47 @@
+//prontera,161,178,5	script	God Item Rental	806,{
+poring_w02,121,87,3	script	God Item Rental	806,{
+
+    mes "[God Item Rental]";
+
+    if(#free_gods == 5) {
+
+        mes "Hello. You already claimed your rental God items.";
+        close;
+
+    }
+    else
+    {
+        mes "Hello "+strcharinfo(0)+"!";
+        mes "I can let you use my God item set for ^008C007 days^000000! Please make sure that you have reached the required level to use these items, and its important to check your weight.";
+        next;
+        
+        mes "Megingjard - ^8C0000Level 94^000000";
+        mes "Megingjard - ^8C0000Level 94^000000";
+        
+        
+        switch(select("Rent the items:Maybe later")) {
+        
+            case 1:
+		rentitem 2629,604800;
+                rentitem 2629,604800;
+                
+                
+                
+                
+                
+		set #free_gods,5;
+                close;
+                break;
+            case 2:
+                mes "OK. Maybe some other time.";
+                close;
+                break;
+        
+        }
+
+        
+        
+    }
+
+} 
+

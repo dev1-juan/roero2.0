@@ -1,0 +1,52 @@
+poring_w02,94,38,4	script	Red Haired Shanks	953,{
+
+	mes "[Red Haired Shanks]";
+	mes "I conquered New World and to find this,";
+	mes "This Eye Belongs to Kurrapika";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Sharingan of Kurrapika",W_Shari;
+	
+W_Shari:
+
+	next;
+	mes "Sharingan";
+	mes "Int +5 its ability is to increase the Life of the wearer by 5%";
+	mes "THINGS YOU NEED:";
+	mes "2x Crimson Red Arch Angel Wing";
+	mes "2x Shinigami";
+	mes "2x Omega Dark Angel";
+	menu "Make",W_1,"Back to Menu",W_01;
+ 
+
+ 
+W_1:
+	if(countitem(29015)<2 || countitem(29019)<2 || countitem(29002)<2)
+	goto W_insufficient; 
+	delitem 29015,2;
+	delitem 29019,2;
+	delitem 29002,2;
+	getitem 29020,1;
+	close;
+ 
+
+
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Red Haired Shanks]";
+	mes "You don't have the required materials go find it on the Grand Line.";
+	mes "Please come back when you do...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}

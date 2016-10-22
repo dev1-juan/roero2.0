@@ -1,0 +1,400 @@
+//=====================================================================
+//===========================eAthena Script============================
+//======================Made by: Juvia==========================
+//Admin of: Grace Ragnarok Online
+//Property of: Grace Ragnarok Online
+//Askydun Quest ver 1.3 : Added a whole server brodcast when a player completes the quest.
+//ver 1.2 = Fixed the timer bugs. (The NPC doesn't show when the timers are operating.)
+//ver 1.1 = Fixed the Duplicate NPC's times and position.
+//ver 1.0 = First Release.
+//======================Quest Description===============================
+//You'll need to get the approval of the 4 Guardians of Askydun to reach Askydun.
+//I removed the final NPC ( The one who needs a guitar ) because I'm too lazy to code it.
+//I replaced it with an item (9298). I use this item as proof that a player completed the quest.
+//PM me if you want to ask or add something.
+//======================================================================
+
+
+// Askydun Guardian 1
+um_fild03,275,245,5	script	1st Guardian	405,{
+
+	if( askydun == 1 ) goto Laskydun1;
+	if( askydun == 2 ) goto Laskydun2;
+	if( askydun == 3 || askydun == 4 || askydun == 5|| askydun == 6|| askydun == 7|| askydun == 8 ) goto Laskydunjejeje;
+	if( askydun == 0 ) {
+	mes "[1st Guardian]";
+	mes "Hi adventurer! I am the first guardian of Askydun!";
+	next;
+	mes "[1st Guardian]";
+	mes "Do you want to go to Askydun?";
+	switch(select("I Want to go to Akydun!:No Thanks")) {
+	case 1:
+	next;
+	mes "[1st Guardian]";
+	mes "Okay! In order for me to allow you to go you must bring me:";
+	mes "15 Opals";
+	mes "15 Sapphires";
+	mes "15 Pearls";
+	set askydun,1;
+	next;
+	mes "[1st Guardian]";
+	mes "If you bring me that items, I will tell the 2nd guardian that you can take his quest!";
+	close;
+	case 2:
+	next;
+	mes "[1st Guardian]";
+	mes "Okay... Maybe next time";
+	close;
+
+	Laskydun1:
+	mes "[1st Guardian]";
+	mes "Did you bring all the items?";
+	menu "Here it is!",here1,"What do you need again?",again1;
+
+	here1:
+	if (countitem(726) > 14 && countitem(722) > 14 && countitem(727) > 14 ) {
+		next;
+		mes "[1st Guardian]";
+		mes "Good! You can now contact the 2nd guardian for you to start his quest";
+		next;
+		delitem 726,15;
+		delitem 722,15;
+		delitem 727,15;
+		set askydun,2;
+		mes "[1st Guardian]";
+		mes "Good luck!";
+		close;
+	}
+	next;
+	mes "[1st Guardian]";
+	mes "You still don't have all the items. Please give talk to me again once you have them all.";
+	close;
+
+	again1:
+	next;
+	mes "[1st Guardian]";
+	mes "Okay! In order for me to allow you to go you must bring me:";
+	mes "15 Opals";
+	mes "15 Sapphires";
+	mes "15 Pearls";
+	close;
+
+	Laskydun2:
+	mes "[1st Guardian]";
+	mes "You can now go find the 2nd guardian! You have passed my test!";
+	close;
+
+Laskydunjejeje:
+	mes "[1st Guardian]";
+	mes "I miss Askydun!";
+	close;
+}
+}
+}
+
+//Askydun Guardian 2
+
+ein_fild01,164,154,3	script	2nd Guardian	405,{
+	
+	if( askydun == 2 ) goto Laskydun02;
+	if( askydun == 3 ) goto Laskydun3;
+	if( askydun == 4 ) goto Laskydun4;
+	if( askydun == 0 || askydun == 1 || askydun == 5|| askydun == 6|| askydun == 7|| askydun == 8 ) {
+	mes "[2nd Guardian]";
+	mes "Ahhh. I really want to go to Askydun again";
+	close;
+}
+
+Laskydun02:
+	mes "[2nd Guardian]";
+	mes "Hi I'm the 2nd Guardian of Askydun!";
+	next;
+	mes "[2nd guardian]";
+	mes "The 1st Guardian told me that you passed his test!";
+	next;
+	mes "[2nd Guardian]";
+	mes "So, do you want to take my test now?";
+	switch(select("Yeah! I'm ready!:Not now")) {
+	case 1:
+		next;
+		mes "[2nd Guardian]";
+		mes "Ok! If you want me to approve you to the third guardian, please bring me these items:";
+		mes "25 Red Potion";
+		mes "25 Yellow Potions";
+		mes "25 Orange Potions";
+		mes "25 White Potions";
+		mes "25 Blue Potions";
+		mes "25 Green Potions";
+		mes "5 Seeds of Life";
+		set askydun,3;
+		next;
+		mes "[2nd Guardian]";
+		mes "If you bring me all those items, you can continue with rest of the quest.";
+		close;
+	case 2:
+		next;
+		mes "[2nd Guardian]";
+		mes "Ok! maybe next time?";
+		close;
+
+	Laskydun3:
+		mes "[2nd Guardian]";
+		mes "Did you bring all the items?";
+		menu "Yes! Here it is",here2,"What do you need again?",again2;
+
+	here2:
+		if (countitem(501) > 24 && countitem(503) > 24 && countitem(502) > 24 && countitem(504) > 24 && countitem(505) > 24 && countitem(506) > 24 && countitem(7140) > 4 ) {
+		next;
+		mes "[2nd Guardian]";
+		mes "Good your a fast worker! I've already told the 3rd Guardian about you.";
+		delitem 501,25;
+		delitem 502,25;
+		delitem 503,25;
+		delitem 504,25;
+		delitem 505,25;
+		delitem 506,25;
+		delitem 7140,5;
+		set askydun,4;
+		next;
+		mes "[2nd Guardian]";
+		mes "You can now find the 3rd Guardian and continue with your quest!";
+		next;
+		mes "[2nd Guardian]";
+		mes "Good Luck!";
+		close;
+}
+		next;
+		mes "[2nd Guardian]";
+		mes "You don't have all the items I need. Please come back when you do have them all.";
+		close;
+		
+		again2:
+		next;
+		mes "[2nd Guardian]";
+		mes "Ok! If you want me to approve you to the third guardian, please bring me this items:";
+		mes "25 Red Potion";
+		mes "25 Yellow Potions";
+		mes "25 Orange Potions";
+		mes "25 White Potions";
+		mes "25 Blue Potions";
+		mes "25 Green Potions";
+		mes "5 Seeds of Life";
+		close;
+
+Laskydun4:
+	mes "[2nd Guardian]";
+	mes "You can now continue your quest with the 3rd guardian. You have already passed my test";
+	close;
+}
+}
+
+//Duplicates (2nd Guardian)
+hu_fild06,103,283,5	duplicate(2nd Guardian)	2nd Guardian#2-2	405
+cmd_fild03,140,189,5	duplicate(2nd Guardian)	2nd Guardian#3-1	405
+
+//3rd Guardian of Askydun
+yuno_fild02,84,228,3	script	3rd Guardian	405,{
+
+	if( askydun == 4 ) goto Laskydun03;
+	if( askydun == 5 ) goto Laskydun5;
+	if( askydun == 6 ) goto Laskydun6;
+	if( askydun == 0 || askydun == 1 || askydun == 2|| askydun == 3|| askydun == 7|| askydun == 8 ) {
+	mes "[3rd Guardian]";
+	mes "Men! I really want to get back to Askydun soon!";
+	close;
+}
+
+	Laskydun03:
+	mes "[3rd Guardian]";
+	mes "Hey you're here! I heard from the 1st and 2nd Guardian that you are good!";
+	mes "Are you ready to take my test?";
+	switch(select("Yes! Bring it on!:No, I'm not ready yet")) {
+	case 1:
+		next;
+		mes "[3rd Guardian]";
+		mes "Okay! We'll do it as you did in the first two Guardians!";
+		next;
+		mes "[3rd Guardian]";
+		mes "I need these items. Once you bring all of them to me, You can continue your quest to find 4th and final guardian;";
+		next;
+		mes "[3rd Guardian]";
+		mes "Here are the items that I require";
+		mes "100 Sticky Mucuses";
+		mes "100 Large Jellopies";
+		mes "100 Jellopies";
+		set askydun,5;
+		next;
+		mes "[3rd Guardian]";
+		mes "If you bring all of those items to me, You can now do the quest of the 4th guardian!";
+		next;
+		mes "[3rd Guardian]";
+		mes "Good luck on finding all of them!";
+		close;
+	case 2:
+		next;
+		mes "[3rd Guardian]";
+		mes "Okay! See you next time!";
+		close;
+
+Laskydun5:
+		mes "[3rd Guardian]";
+		mes "Did you got all the items already?";
+		menu "Yes! Here it is",here3,"What do you need again?",again3;
+
+here3:
+	if( countitem(938) > 99 && countitem(7126) > 99 && countitem(909) > 99 ) {
+	next;
+	mes "[3rd Guardian]";
+	mes "Nice! You work perfect! You can now go look for the final guardian!";
+	delitem 938,100;
+	delitem 7126,100;
+	delitem 909,100;
+	set askydun,6;
+	next;
+	mes "[3rd Guardian]";
+	mes "Good luck! We might see each other again in Askydun!";
+	close;
+}
+	next;
+	mes "[3rd Guardian]";
+	mes "You still don't have the items that I require! Please come back when you do have them all!";
+	close;
+
+again3:
+	next;
+		mes "[3rd Guardian]";
+		mes "Here are the items that I require";
+		mes "100 Sticky Mucuses";
+		mes "100 Large Jellopies";
+		mes "100 Jellopies";
+		close;
+
+Laskydun6:
+	mes "[3rd Guardian]";
+	mes "Hurry! It's just a little time before you reach Askydun!";
+	close;
+}
+}
+
+//Duplicates (Guardian 4)
+ein_fild10,271,56,3	duplicate(3rd Guardian)	3rd Guardian#4-1	405
+ein_fild04,362,93,0	duplicate(3rd Guardian)	3rd Guardian#5-1	405
+
+//4th Guardian of Askydun
+yuno_fild08,164,190,5	script	4th Guardian	405,{
+
+	if( askydun == 6 ) goto Laskydun04;
+	if( askydun == 7 ) goto Laskydun7;
+	if( askydun == 8 ) goto Laskydun8;
+	if( askydun == 0 || askydun == 1 || askydun == 2|| askydun == 3|| askydun == 4|| askydun == 5 ) {
+	mes "[4th Guardian]";
+	mes "Hi! Nice weather today isn't it?";
+	close;
+}
+
+Laskydun04:
+	mes "[4th Guardian]";
+	mes "Hi! I am the fourth and final guardian!";
+	next;
+	mes "[4th Guardian]";
+	mes "Are you ready to take your final quest from the guardians?";
+	switch(select("Yes! Let's go!:Wait I'm not ready yet!")) {
+	case 1:
+		next;
+		mes "[4th Guardian]";
+		mes "Okay I know you're in a rush so I'll tell you what I need right away";
+		next;
+		mes "[4th Guardian]";
+		mes "I need these items:";
+		mes "1 Chepet Card";
+		mes "1 Zealotus Card";
+		mes "1 Toad Card";
+		mes "1 Harpy Card";
+		mes "1 Alice Card";
+		mes "1 Wanderer Card";
+		set askydun,7;
+		next;
+		mes "[4th Guardian]";
+		mes "If you bring me all of that items, you can now go in and out of Askydun. Good Luck in your final test!";
+		close;
+	case 2:
+		next;
+		mes "[4th Guardian]";
+		mes "Okay! Get ready and talk to me!";
+		close;
+
+Laskydun7:
+		mes "[4th Guardian]";
+		mes "Did you got all the items already?";
+		menu "Yes! Here it is",here4,"What do you need again?",again4;
+
+here4:
+if (countitem(4277) > 0 && countitem(4284) > 0 && countitem(4306) > 0 && countitem(4325) > 0 && countitem(4253) > 0 && countitem(4210) > 0 ) {
+next;
+mes "[4th Guardian]";
+mes "Very good! Now you're quest is done! Here take this ring!";
+delitem 4277,1;
+delitem 4284,1;
+delitem 4306,1;
+delitem 4325,1;
+delitem 4253,1;
+delitem 4210,1;
+set askydun,8;
+next;
+mes "[4th Guardian]";
+mes "Please meet the last guardian so he can send you to Askydun.";
+announce "["+strcharinfo(0)+"] finished the Askydun Quest !!",bc_all;
+next;
+mes "[4th Guardian]";
+mes "Good job kid";
+warp "Askydun",90,103;
+close;
+}
+next;
+mes "[4th Guardian]";
+mes "You don't have all the items, please come back when you have them all.";
+close;
+
+again4:
+next;
+		mes "[4th Guardian]";
+		mes "I need these items:";
+		mes "1 Chepet Card";
+		mes "1 Zealotus Card";
+		mes "1 Toad Card";
+		mes "1 Harpy Card";
+		mes "1 Alice Card";
+		mes "1 Wanderer Card";
+		close;
+
+Laskydun8:
+mes "[4th Guardian]";
+mes "You did good kid";
+close;
+
+}
+}
+//Duplicates
+gon_fild01,301,293,3	duplicate(4th Guardian)	4th Guardian#6-1	405
+
+-	script	quest_restriction	-1,{
+
+OnPCLoadMapEvent:
+
+	if( strcharinfo(3) == "Askydun" ) {
+	if(askydun == 0||askydun == 1||askydun == 2||askydun == 3||askydun == 4||askydun == 5||askydun == 6||askydun == 7) {
+	dispbottom "Map Restriction : we identify that you are not allowed to enter this map.";
+	warp "SavePoint",0,0;
+	end;
+	} else {	
+	dispbottom "Okay you are allowed to stay in this map";
+	end;
+		}
+	}
+}
+
+
+// Mapflags
+Askydun	mapflag	nowarpto	99
+Askydun	mapflag	loadevent
+

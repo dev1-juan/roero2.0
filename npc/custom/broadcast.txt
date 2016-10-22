@@ -1,0 +1,29 @@
+poring_w02,103,101,4	script	Announcer	99,{
+
+if(Zeny < 1000000) goto L_Zeny;
+	mes "What would you like me to announce?";
+	mes "Input 0 to cancel.";
+input .@announce$;
+if (.@announce$ == "0") close;
+next;
+	mes "Please select the color";
+	switch(select("Red:Green:Blue")){
+		case 1:
+		set .@color$,0xFF0000;
+	goto L_announce;
+		case 2:
+		set .@color$,0x00FF00;
+	goto L_announce;
+		case 3:
+		set .@color$,0x0000FF;
+	goto L_announce;
+	}
+L_announce:
+set Zeny,Zeny-1000000;
+announce ""+.@announce$+"",0,.@color$;
+close;
+
+L_Zeny:
+	mes "You need at least 1'000'000z.";
+close;
+}

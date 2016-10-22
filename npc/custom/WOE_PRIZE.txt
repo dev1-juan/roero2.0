@@ -1,0 +1,48 @@
+//===== rAthena Script =======================================
+//= Guild Prize Giveaway
+//===== By: ==================================================
+//= AnnieRuru / Mysterious
+//===== Current Version: =====================================
+//= 1.5
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= Rewards guild masters of castle owners after each
+//= War of Emperium session.
+//===== Additional Comments: =================================
+//= v1.0 - Intitial Re-release [Mysterious]
+//= v1.1 - Language structures [Mysterious]
+//= v1.2 - Added divisions [Mysterious]
+//= v1.3 - Added proper information [Mysterious]
+//= v1.4 - Optimized! [Euphy]
+//= v1.5 - Little bit of cleaning [Mysterious]
+//============================================================
+
+poring_w02,93,90,4	script	Castle Rewards	909,{
+
+	mes "[Castle Rewards]";
+	if (agitcheck() || agitcheck2()) { mes "WoE is currently still in progress."; close; }
+	mes "Please select a castle:";
+	next;
+	for(set .@i,0; .@i<30; set .@i,.@i+1)
+		set .@menu$, .@menu$+getcastlename(.Castles$[.@i])+":";
+	set .@i, select(.@menu$)-1;
+	mes "[Castle Rewards]";
+	if (getcastledata(.Castles$[.@i],1) != getcharid(2)) { mes "You aren't the owner of this castle."; close; }
+	if (getguildmasterid(getcharid(2)) != getcharid(0)) { mes "Only the guild master can claim the reward."; close; }
+	if ($castle_claimed&(1<<.@i)) { mes "You've already claimed this castle's reward!"; close; }
+	mes "Here's your reward for conquering "+getcastlename(.Castles$[.@i])+".";
+	set $castle_claimed, $castle_claimed | (1<<.@i);
+	getitem 677,500;  //Set your prize here!
+	close;
+
+OnAgitEnd:
+	set $castle_claimed, 0;
+	end;
+
+OnInit:
+	setarray .Castles$[0],
+		//"prtg_cas01","prtg_cas02","prtg_cas03";
+		"arug_cas01","arug_cas02","arug_cas03";
+	end;
+}

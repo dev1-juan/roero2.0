@@ -1,0 +1,109 @@
+lhz_in03,267,254,2	script	Kafra Employee#lhzdg	117,{
+	cutin "kafra_01",2;
+	if(getgmlevel() < 2 ) goto kafrag;
+		mes "[Kafra Employee]";
+		mes "Welcome, proud member";
+		mes "of the ^FF0000 'Death Ragnarok GM Team' ^000000 Guild!";
+		mes "The Kafra Corporation is ready";
+		mes "to assist you wherever you go!";
+		next;
+		switch(select("Use Storage:Use Warp Service:Rent Pushcart:Cancel")) {
+		case 1:
+			if (basicskillcheck() && getskilllv("NV_BASIC") < 6) {
+				mes "[Kafra Employee]";
+				mes "I'm so sorry, but you must";
+				mes "have at least Novice Skill";
+				mes "Lv.6 to use the Storage.";
+			}
+			else {
+				guildopenstorage();
+			}
+			break;
+		case 2:
+			mes "[Kafra Employee]";
+			mes "Please tell me your";
+			mes "Warp destination.";
+			next;
+			switch(select("Rachel -> 200 z:Cancel")) {
+			case 1:
+				if (zeny < 200) {
+					mes "[Kafra Employee]";
+					mes "I'm sorry, but you don't";
+					mes "have enough zeny to pay";
+					mes "the warp fee. Would you";
+					mes "please check your funds again?";
+					close2;
+					cutin "kafra_01",255;
+					end;
+				}
+				set zeny,zeny-200;
+				warp "rachel",115,125;
+				end;
+			case 2:
+				cutin "kafra_01",255;
+			}
+			break;
+		case 3:
+			if (BaseClass != Job_Merchant) {
+				mes "[Kafra Employee]";
+				mes "I'm sorry, but the Pushcart";
+				mes "rental service can only be";
+				mes "used by Merchant, Blacksmith,";
+				mes "and Alchemist class characters.";
+			}
+			else if (checkcart() == 1) {
+				mes "[Kafra Employee]";
+				mes "Hm? You've already";
+				mes "rented a Pushcart.";
+			}
+			else {
+				mes "[Kafra Employee]";
+				mes "The Pushcart rental fee";
+				mes "is 800 zeny. Would you";
+				mes "like to rent a Pushcart?";
+				next;
+				switch(select("Rent Pushcart:Cancel")) {
+				case 1:
+					if (zeny < 800) {
+						mes "[Kafra Employee]";
+						mes "I'm sorry, but you don't";
+						mes "have enough zeny to rent";
+						mes "one of our Pushcarts.";
+						close2;
+						cutin "kafra_01",255;
+						end;
+					}
+					set zeny,zeny-800;
+					setcart;
+					break;
+				case 2:
+					break;
+				}
+			}
+			break;
+		case 4:
+			mes "[Kafra Employee]";
+			mes "Thank you for using the";
+			mes "Kafra Service. Wherever";
+			mes "you go, Kafra will be";
+			mes "there to support you!";
+			close2;
+			cutin "kafra_01",255;
+			end;
+		}
+		close2;
+		cutin "kafra_01",255;
+		end;
+
+kafrag:
+		mes "[Kafra Employee]";
+		mes "I'm sorry, but I've been";
+		mes "exclusively contracted";
+		mes "to the members of the";
+		mes "^FF0000 'Death Ragnarok GM Team' ^000000 Guild.";
+		mes "You'll have to ask another";
+		mes "Kafra Employee to help you...";
+		close2;
+		cutin "kafra_01",255;
+		end;
+}

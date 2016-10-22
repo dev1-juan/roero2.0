@@ -1,0 +1,116 @@
+-	script	f_emotions	-1,{
+OnInit:
+                    	/*-----*/	/*---------*/	/*-------*/	/*-------*/	/*----*/
+	setarray .emo$, "!|gasp",	"?|what|huh",	"ho"      ,	"lv"      ,	"swt"  ,
+                    	"ic"    ,	"an"        ,	"ag"      ,	"$"       ,	"..."  ,
+                    	"gawi"  ,	"bawi"      ,	"bo"      ,	"flg1"    ,	"lv2"  ,
+                    	"thx"   ,	"wah"       ,	"sry"     ,	"heh"     ,	"swt2" ,
+                    	"hmm"   ,	"no1"       ,	"??"      ,	"omg"     ,	"oh"   ,
+                    	"x"     ,	"hlp"       ,	"go"      ,	"sob"     ,	"gg"   ,
+                    	"kis"   ,	"kis2"      ,	"pif"     ,	"ok"      ,	""     ,
+                    	"flg2"  ,	"bzz"       ,	"rice"    ,	"awsm"    ,	"meh"  ,
+                    	"shy"   ,	"pat"       ,	"mp"      ,	"slur"    ,	"com"  ,
+                    	"yawn"  ,	"grat"      ,	"hp"      ,	"flg3"    ,	"flg4" ,
+                    	"flg5"  ,	"flg6"      ,	"fsh"     ,	"spin"    ,	"sigh" ,
+                    	"dum"   ,	"crwd"      ,	"otl"     ,	"dice1"   ,	"dice2",
+                    	"dice3" ,	"dice4"     ,	"dice5"   ,	"dice6"   ,	"flg7" ,
+                    	"luv"   ,	"flg8"      ,	"flg9"    ,	"mobile"  ,	"mail" ,
+                    	"flg10" ,	"antenna1"  ,	"antenna2",	"antenna3",	"hum"  ,
+                    	"abs"   ,	"oops"      ,	"spit"    ,	"ene"     ,	"panic",
+                    	"whisp" ;
+
+	bindatcmd "emo",strnpcinfo(3)+"::OnEmo";
+	end;
+
+OnEmo:
+	for(.@a=0;.@a<getarraysize(.emo$);.@a++) {
+		if(compare(.emo$[.@a],.@atcmd_parameters$[0])) {
+			emotion .@a,1; end;
+		}
+	}
+	dispbottom "Emotion not found!";
+}
+
+/*
+e_gasp   	0 = !
+e_what  	1 = ?
+e_ho    	2 = ho
+e_lv    	3 = lv
+e_swt   	4 = swt
+e_ic    	5 = ic
+e_an    	6 = an
+e_ag    	7 = ag
+e_cash  	8 = $
+e_dots  	9 = ...
+e_scissors	10 = gawi
+e_rock  	11 = bawi
+e_paper  	12 = bo
+e_korea  	13 = flg1
+e_lv2   	14 = lv2
+e_thx   	15 = thx
+e_wah   	16 = wah
+e_sry   	17 = sry
+e_heh   	18 = heh
+e_swt2  	19 = swt2
+e_hmm   	20 = hmm
+e_no1   	21 = no1
+e_no    	22 = ??
+e_omg   	23 = omg
+e_oh    	24 = oh
+e_X     	25	= x
+e_hlp   	26 = hlp
+e_go    	27 = go
+e_sob    	28 = sob
+e_gg    	29 = gg
+e_kis   	30 = kis
+e_kis2   	31 = kis2
+e_pif   	32 = pif
+e_ok    	33 = ok
+e_mute  	34 = ""
+e_indonesia	35 = flg2
+e_bzz   	36 = bzz
+e_rice   	37 = rice
+e_awsm   	38 = awsm
+e_meh   	39 = meh
+e_shy   	40 = shy
+e_pat   	41 = pat
+e_mp    	42 = mp
+e_slur   	43 = slur
+e_com   	44 = com
+e_yawn   	45 = yawn
+e_grat   	46 = grat
+e_hp    	47 = hp
+e_philippines	48 = flg3
+e_malaysia	49 = flg4
+e_singapore	50 = flg5
+e_brazil	51 = flg6
+e_flash  	52 = fsh
+e_spin  	53 = spin
+e_sigh  	54 = sigh
+e_dum   	55 = dum
+e_loud  	56 = crwd
+e_otl   	57 = otl
+e_dice1 	58 = dice1
+e_dice2  	59 = dice2
+e_dice3  	60 = dice3
+e_dice4 	61 = dice4
+e_dice5 	62 = dice5
+e_dice6 	63 = dice6
+e_india 	64 = flg7
+e_luv   	65 = luv
+e_russia	66 = flg8
+e_virgin	67 = flg9
+e_mobile	68 = mobile
+e_mail   	69 = mail
+e_chinese	70 = flg10
+e_antenna1	71 = antenna1
+e_antenna2	72 = antenna2
+e_antenna3	73 = antenna3
+e_hum   	74 = hum
+e_abs   	75 = abs
+e_oops   	76 = oops
+e_spit   	77 = spit
+e_ene   	78 = ene
+e_panic  	79 = panic
+e_whisp 	80 = whisp
+*/

@@ -1,0 +1,63 @@
+//===== rAthena Script ======================================= 
+//= Level Degrade 256~264
+//===== By: ================================================== 
+//= newhackzone
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= Level Degrader
+//===== Additional Comments: ================================= 
+//= 1.0 Initial Release
+//===== Credits: =============================================
+//= Death Ragnarok Online GM TEAM
+//= Newhackzone
+//============================================================
+-	script	LevelDown	-1,{
+//start
+OnPCLoginEvent:
+	if(BaseLevel == 255) goto lvl00;
+	if(BaseLevel == 265) goto lvl00;
+	if(BaseLevel == 256) goto lvl1;
+	if(BaseLevel == 257) goto lvl2;
+	if(BaseLevel == 258) goto lvl3;
+	if(BaseLevel == 259) goto lvl4;
+	if(BaseLevel == 260) goto lvl5;
+	if(BaseLevel == 261) goto lvl6;
+	if(BaseLevel == 262) goto lvl7;
+	if(BaseLevel == 263) goto lvl8;
+	if(BaseLevel == 264) goto lvl9;
+
+lvl00:
+	close;
+
+lvl1:
+	atcommand  "@BaseLevel -1";
+	close;
+lvl2:
+	atcommand  "@BaseLevel -2";
+	close;
+lvl3:
+	atcommand  "@BaseLevel -3";
+	close;
+lvl4:
+	atcommand  "@BaseLevel -4";
+	close;
+lvl5:
+	atcommand  "@BaseLevel -5";
+	close;
+lvl6:
+	atcommand "@BaseLevel -6";
+	close;
+lvl7:
+	atcommand  "@BaseLevel -7";
+	close;
+lvl8:
+	atcommand  "@BaseLevel -8";
+	close;
+lvl9:
+	atcommand  "@BaseLevel -9";
+	close;
+}
+

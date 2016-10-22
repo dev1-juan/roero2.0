@@ -1,0 +1,128 @@
+// Made by iTouch
+// ----------------------------------------------------------------------------
+// Ultimate PvP Warper ver. 1
+// Features:
+// Baby PvP Room
+// PvP Square(Every 2 days Random PvP Room)
+// PvP Nightmare
+// PvP Lowlvl( Supports 1 - 150 Lvl)
+// PvP No Potion (Berrys , Ygg seed , Any potions , etc. are restricted)
+// PvP Non Donator (Got Items are restricted here)
+// -----------------------------------------------------------------------------
+// ver. 2 update idea:
+// Adding a PvP Room that removes the buffs of the player when entering the room
+// Adding a PvP Room for GM's Only so GM's will have fun
+// -----------------------------------------------------------------------------
+// Special thanks to:
+// icescope of eAthena for helping me configuring the error at PvP Square
+// -----------------------------------------------------------------------------
+
+-	script	points	-1,{
+OnInit:
+	set .Delay,1;
+	end;
+OnPCKillEvent:
+	if ( strcharinfo(3) != "guild_vs3" || gettimetick(2) < #timer || killedrid == @lastkilled || killedrid == getcharid(3) ) end;
+	#CASHPOINTS++;
+	dispbottom "You now have " +#CASHPOINTS+ " PvP points.";
+	@lastkilled = killedrid;
+	#timer = gettimetick(2) + .Delay;
+	end;
+}
+
+
+poring_w02,108,87,4	script	PVP	1007,{
+	if (.pvp_square$=="") donpcevent "PVP::OnClock0000";
+		if (getmapusers("guild_vs3") > 99) callsub S_full;
+		callsub S_payment;
+		warp "guild_vs3",0,0;
+announce strcharinfo(0)+" entered PVP Room!! "+$@lista$,0;
+		
+		end;
+S_full:
+	mes " ";
+	mes "I'm sorry, this arena is full.  Please try again later...";
+	close;
+S_payment:
+	if (Zeny < (200*BaseLevel + 800)) {
+		mes "You don't have enough zeny.";
+		mes "It costs "+(200*BaseLevel + 800)+" zeny for you to enter.";
+		close;
+	}
+	set Zeny, Zeny - (200*BaseLevel + 800);
+	return;
+ 
+OnInit:
+	   waitingroom "PvP Warper",0;
+    end;
+OnClock0000:
+	// set the "PVP Square" map, based on day of the weeek
+	switch(gettime(4)) {
+	case 0:	// Sunday
+	case 1:	// Monday
+		set .pvp_square$, "guild_vs2";
+		break;
+	case 2:	// Tuesday
+	case 3:	// Wednesday
+		set .pvp_square$, "guild_vs5";
+		break;
+	case 4:	// Thursday
+	case 5:	// Friday
+		set .pvp_square$, "guild_vs4";
+		break;
+	case 6:	// Saturday
+		set .pvp_square$, "guild_vs1-2";
+		break;
+	}
+}
+
+
+moscovia.gat,226,198,4	duplicate(PVP)	PVP#1	1007
+//askydun.gat,96,113,3	duplicate(PVP)	PVP#2	1007 // Kliwa
+alberta.gat,23,243,3	duplicate(PVP)	PVP#3	1007 // Kliwa
+aldebaran.gat,136,121,1	duplicate(PVP)	PVP#4	1007 // Kliwa
+amatsu.gat,102,152,3	duplicate(PVP)	PVP#5	1007 // Kliwa
+ayothaya.gat,205,169,2	duplicate(PVP)	PVP#6	1007 // Kliwa
+comodo.gat,195,156,4	duplicate(PVP)	PVP#7	1007 // Kliwa
+einbech.gat,198,83,4	duplicate(PVP)	PVP#8	1007 // Taas Kaliwa
+einbroch.gat,55,202,5	duplicate(PVP)	PVP#9	1007 // Taas Kaliwa
+geffen.gat,125,71,4	duplicate(PVP)	PVP#10	1007
+gonryun.gat,165,121,4	duplicate(PVP)	PVP#11	1007
+hugel.gat,87,149,5	duplicate(PVP)	PVP#12	1007
+izlude.gat,124,150,4	duplicate(PVP)	PVP#13	1007
+lighthalzen.gat,166,101,4	duplicate(PVP)	PVP#14	1007
+louyang.gat,214,120,5	duplicate(PVP)	PVP#15	1007
+xmas.gat,154,136,4	duplicate(PVP)	PVP#16	1007
+morocc.gat,161,97,4	duplicate(PVP)	PVP#17	1007
+payon.gat,184,104,4	duplicate(PVP)	PVP#18	1007
+rachel.gat,123,145,4	duplicate(PVP)	PVP#19 	1007
+veins.gat,219,127,4	duplicate(PVP)	PVP#20	1007
+yuno.gat,163,170,4	duplicate(PVP)	PVP#21	1007
+umbala.gat,106,159,3	duplicate(PVP)	PVP#22	1007
+prontera,163,177,4	duplicate(PVP)	PVP#23	1007
+Askydun,100,109,4	duplicate(PVP)	PVP#23	1007
+splendide,198,153,4	duplicate(PVP)	PVP#24	1007
+ 
+// Mapflags
+guild_vs2	mapflag	pvp
+guild_vs5	mapflag	pvp
+guild_vs4	mapflag	pvp
+guild_vs1-2	mapflag	pvp
+ 
+guild_vs3	mapflag	pvp
+guild_vs1	mapflag	pvp
+pvp_y_8-2	mapflag	pvp
+1@orcs	mapflag	pvp
+
+guild_vs3	mapflag	pvp_noguild
+
+poring_c01	mapflag	nowarp
+poring_c01	mapflag	nowarpto
+poring_c01	mapflag	noteleport
+poring_c01	mapflag	nosave
+poring_c01	mapflag	nomemo
+poring_c01	mapflag	nobranch
+poring_c01	mapflag pvp_noguild
+poring_c01	mapflag	pvp_noparty
+poring_c01	mapflag	restricted	1
+

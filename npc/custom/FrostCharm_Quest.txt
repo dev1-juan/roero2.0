@@ -1,0 +1,63 @@
+poring_w02,105,47,8	script	Frosty The SnowMan	710,{
+
+	mes "[Frosty]";
+	mes "Hello I'm your Friendly SnowMan";
+	mes "I can give you a Charm";
+	mes "But please I want some Items to keep";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Frost Charm",W_fc,
+	"Nothing",W_cancel;
+	
+W_fc:
+
+	next;
+	mes "THINGS YOU NEED:";
+	mes "500x Glacial Heart";
+	mes "500x Ice cubic";
+	mes "300x Aquamarine";
+	mes "10x Safety Ring";
+	mes "5x Marc card";
+	mes "5x Marse card";
+	mes "5x Swordfish card";
+	mes "5x Megalodon card";
+	mes "5x Leaf Cat card";
+	mes "5x Lesser Elemental Ring";
+	menu "Make",W_1,"Back to Menu",W_01;
+ 
+ 
+W_1:
+	if(countitem(7561)<500 || countitem(7066)<500 || countitem(720)<300 || countitem(2615)<10 || countitem(4105)<5 || countitem(4095)<5 || countitem(4089)<5 || countitem(4067)<5 || countitem(4195)<5 || countitem(2680)<5)
+	goto W_insufficient; 
+	delitem 7561,500;
+	delitem 7066,500;
+	delitem 720,300;
+	delitem 2615,10;
+	delitem 4105,5;
+	delitem 4095,5;
+	delitem 4089,5;
+	delitem 4067,5;
+	delitem 4195,5;
+	delitem 2680,5;
+	getitem 29025,1;
+	close;
+ 
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Frosty]";
+	mes "You don't have the required materials.";
+	mes "Please come back when you do...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}

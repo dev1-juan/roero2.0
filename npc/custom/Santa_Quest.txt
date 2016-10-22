@@ -1,0 +1,478 @@
+poring_w02,99,41,8	script	Santa Quest	718,{
+
+	mes "[Santa Clause]";
+	mes "Hello Which Quest Would You Like To Do?";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Chii Ears",W_Chii,
+	"Face of Death",W_Face,
+	"Hood of Death",W_Hood,
+	"Kakashi Head Protector",W_Kaka,
+	"Heart Sunglasses",W_Heart,
+	"Cat0 9Tails Hat",W_Cat,
+	"Moonlight Hat",W_Moon,
+	"Moobert Hat",W_Moob,
+	"Rosary of Quincy Clan",W_Quincy,
+	"DJ Headset",W_Dj,
+	"Alchemist Pocket Watch",W_Alche,
+	"Haruhi Ribbons",W_Haru,
+	"Pikachu Ears",W_Pika,
+	"Piamette Head Band",W_Pia,
+	"Double Bunny Ears",W_Bunny;
+	
+W_Face:
+
+	next;
+	mes "[Santa Clause]";
+	mes "Face of Death";
+	mes "Coma Effect with Hood of Death";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "3x Dark Lord Card";
+	mes "666x Skel Bone";
+	mes "100x DeadBranch";
+	mes "5x Soldier Skeleton Card";
+	mes "2x Goddess of Fortune's Brooch";
+	mes "10x Crescent Scythe[1]";
+	menu "Make",W_1,"Back to Menu",W_01;
+ 
+W_Hood:
+
+	next;
+	mes "[Santa Clause]";
+	mes "Hood of Death";
+	mes "Coma Effect with Face of Death";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "13x Cresent Scythe[0]";
+	mes "13x Wraith Dead card";
+	mes "666x Worn-Out Page";
+	mes "200x Fabric";
+	mes "300x Skel Bone";
+	menu "Make",W_2,"Back to Menu",W_01;
+
+W_Kaka:
+
+	next;
+	mes "[Santa Clause]";
+	mes "Kakashi Head Protector - +2 agi and +3 dex";
+	next;
+	mes "THINGS YOU NEED:";
+	mes "1x Gas Mask";
+	mes "1x Pirate Bandana";
+	mes "50x Steel";
+	mes "50x Worn Out Scroll";
+	menu "Make",W_3,"Back to Menu",W_01;
+	
+	
+W_Heart:
+
+	next;
+	mes "[Santa Clause]";
+	mes "Heart Sunglasses - Enable Use Wink of Charm";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "1x Sunglasses";
+	mes "1x Glasses";
+	mes "1x Geek Glasses";
+	mes "1x Machoman's Sunglasses";
+	mes "1x Heart HairPin";
+	mes "100x Scarlet Dyestuff";
+	mes "100x Cursed Ruby";
+	menu "Make",W_4,"Back to Menu",W_01;	
+	
+W_Moon:
+
+	next;
+	mes "[Santa Clause]";
+	mes "Moonlight Hat - Enable Faster Walk Speed";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "800x Wing of Dragonfly";
+	mes "8x Moonlight Flower Card";
+	mes "1x Kakashi Head Protector";
+	mes "3x Angel Wings";
+	mes "4x Ninja Suit";
+	menu "Make",W_5,"Back to Menu",W_01;
+	
+
+W_Cat:
+
+	next;
+	mes "[Santa Clause]";
+	mes "CatO9tails Hat- 50% damage on Medium Monster";
+	mes "Using Magick Attacks";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "200x Old Magic Books";
+	mes "50x Torn Magic Books";
+	mes "1x CatO9tails Card";
+	mes "1x Gemmed Sallet[1]";
+	mes "10x High Heels";
+	mes "5x Joker Jester";
+	mes "2x Rose Quartz";
+	menu "Make",W_6,"Back to Menu",W_01;
+	
+W_Moob:
+
+	next;
+	mes "[Santa Clause]";
+	mes "Moobert Hat - 100% Anti Freeze";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "200x Marina Card";
+	mes "500x Ice Cubics";
+	mes "1x Crystal Blue";
+	mes "1x Eclipse Card";
+	menu "Make",W_7,"Back to Menu",W_01;
+ 
+ 
+W_Quincy:
+
+	next;
+	mes "[Santa Clause]";
+	mes "Quincy Bow - Most Powerful Bow";
+	mes " 100% Damage Against Ghost";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "1x Alarm Mask";
+	mes "1x Goblin Mask";
+	mes "1x Goblin Leader Mask";
+	mes "1x Surprised Mask";
+	mes "1x Poker Mask";
+	mes "1x Annoyed Mask";
+	mes "1x Mr. Smile";
+	mes "1x Mr. Scream";
+	mes "5,000x Immaterial Arrows";
+	mes "2,000x Sharp Arrows Arrows";
+	mes "1x Rosary[1]";
+	menu "Make",W_8,"Back to Menu",W_01;
+
+W_Dj:
+	next;
+	mes "[Santa Clause]";
+	mes "DJ Headset";
+	mes "+10% Increase Arrow Vulcan's Damage, Dex +4, Agi+8";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "300x Clover";
+	mes "4x Violin[4]";
+	mes "1x Circlet[1]";
+	menu "Make",W_10,"Back to Menu",W_01;
+	
+	
+W_Alche:
+	next;
+	mes "[Santa Clause]";
+	mes "Alchemist Pocket Watch";
+	mes "No cast cancel, decrease cast time 5%,+5 Dex,Enchants Freecast Lvl1";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "1 Munak Doll";
+	mes "100x Foolishness of the Blind";
+	mes "200 Clock Hands";
+	mes "200 Worn Out Scroll";
+	mes "200 Worn Out Page";
+	menu "Make",W_11,"Back to Menu",W_01;	
+	
+W_Haru:
+	next;
+	mes "[Santa Clause]";
+	mes "Haruhi Ribbons";
+	mes "From a popular anime Haruhi of Love Blue Girl";
+	mes "Makes you feel alive, Increase Movement Speed, +5%SP";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "5x Goggles[1]";
+	mes "10x Moonlight Flower Card";
+	mes "50x Rough Oridecon";
+	mes "200x Soft Silk";
+	mes "1x Small Ribbon";
+	mes "1x Turban[1]";
+	menu "Make",W_12,"Back to Menu",W_01;
+	
+W_Pika:
+	next;
+	mes "[Santa Clause]";
+	mes "Pikachu Ears";
+	mes "Ears from Pokemon Pikachu";
+	mes "Use lvl 1 Lighning Loader using Wind of Verdure";
+	mes "Use lvl 5 Lightning Crash from others when attacked";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "150x Wind of Verdure";
+	mes "150x Rough Wind";
+	mes "1x Book of Gust of Wind";
+	mes "10x Wind Ghost Card";
+	mes "2x Kitty Band";
+	menu "Make",W_13,"Back to Menu",W_01;
+	
+
+W_Bunny:
+	next;
+	mes "[Santa Clause]";
+	mes "Double Bunny Ears ";
+	mes "Can Make you jump High";
+	next;
+	mes "[Santa Clause]";
+	mes "THINGS YOU NEED:";
+	mes "2x Bunny Band";
+	mes "100x Four Leaf Clover";
+	mes "200x Fabric";
+	mes "200x Carrot";
+	mes "200x Rainbow Carrot";
+	mes "700x Fluff";
+	mes "300x false Angel Wing";
+	menu "Make",W_9,"Back to Menu",W_01;
+
+W_Chii:
+	next;
+	mes "[Santa Clause]";
+	mes "Chii Ears";
+	mes "Dex + 3";
+	next;
+	mes "[Santa Clause]";
+	mes "You need:";
+	mes "1x Elven Ears";
+	mes "50x Skirt of Virgin";
+	mes "10x Steel";
+	mes "200 Alice Apron";
+	menu "Make",W_14,"Back to Menu",W_01;
+
+W_Pia:
+	next;
+	mes "[Santa Clause]";
+	mes "Piamette Head Band:";
+	mes "A cute Piamette headband.";
+	mes "Grands the user the power to suck the life";
+	mes "form others when attacked.";
+	next;
+	mes "[Santa Clause]";
+	mes "You need:";
+	mes "25x Pencil Case";
+	mes "1x Spiky Band";
+	mes "100x Brigan";
+	mes "100x Cyfar";
+	mes "300x Red Blood";
+	menu "Make",W_15,"Back to Menu",W_01;
+
+
+//item checkup
+ 
+W_1:
+	if(countitem(4168)<3 || countitem(932)<666 || countitem(604)<100 || countitem(4086)<5 || countitem(2652)<2 || countitem(1476)<10)
+	goto W_insufficient; 
+	delitem 4168,3;
+	delitem 932,666;
+	delitem 604,100;
+	delitem 4086,5;
+	delitem 2652,2;
+	delitem 1476,10;
+	getitem 29010,1;
+	close;
+ 
+W_2:
+	if(countitem(1466)<13 || countitem(4189)<13 || countitem(1097)<666 || countitem(1059)<200 || countitem(932)<300)
+	goto W_insufficient; 
+	delitem 1466,13;
+	delitem 4189,13;
+	delitem 1097,666;
+	delitem 1059,200;
+	delitem 932,300;
+	getitem 29009,1;
+	close;
+
+	
+W_3:
+	if(countitem(5005)<1 || countitem(2287)<1 || countitem(999)<50 || countitem(618)<50)
+	goto W_insufficient; 
+	delitem 5005,1;
+	delitem 2287,1;
+	delitem 999,50;
+	delitem 618,50;
+	getitem 29011,1;
+	close;
+	
+W_4:
+	if(countitem(2201)<1 || countitem(2203)<1 || countitem(2243)<1 || countitem(5006)<1 || countitem(5041)<1|| countitem(975)<100 || countitem(724)<100)
+	goto W_insufficient; 
+	delitem 2201,1;
+	delitem 2203,1;
+	delitem 2243,1;
+	delitem 5006,1;
+	delitem 5041,1;
+	delitem 975,100;
+	delitem 724,100;
+	getitem 29013,1;
+	close;
+
+ 
+ 
+ 	
+W_5:
+	if(countitem(7064)<800 || countitem(4131)<8 || countitem(2254)<3  || countitem(2337)<4  || countitem(29011)<1)
+	goto W_insufficient; 
+	delitem 7064,800;
+	delitem 4131,8;
+	delitem 2254,3;
+	delitem 2337,4;
+	delitem 29011,1;
+	getitem 29005,1;
+	close;
+ 
+ 
+
+ W_6:
+	if(countitem(1006)<200 || countitem(7117)<50 || countitem(4290)<1  || countitem(2231)<1  || countitem(2409)<10 || countitem(5003)<5 || countitem(7293)<2)
+	goto W_insufficient; 
+	delitem 1006,200;
+	delitem 7117,50;
+	delitem 4290,1;
+	delitem 2231,1;
+	delitem 2409,10;
+	delitem 5003,5;
+	delitem 7293,2;
+	getitem 29007,1;
+	close;
+ 
+ 
+ W_7:
+	if(countitem(4055)<200 || countitem(7066)<500 || countitem(991)<1 || countitem(4266)<1)
+	goto W_insufficient; 
+	delitem 4055,200;
+	delitem 7066,500;
+	delitem 991,1;
+	delitem 4266,1;
+	getitem 29004,1;
+	close;
+ 
+ W_8:
+	if(countitem(5086)<1 || countitem(2297)<1 || countitem(5090)<1 || countitem(5088)<1 || countitem(5087)<1 || countitem(5089)<1 || countitem(2278)<1 || countitem(2288)<1 || countitem(1757)<5000 || countitem(1764)<2000 || countitem(2626)<1)
+	goto W_insufficient; 
+	delitem 5086,1;
+	delitem 2297,1;
+	delitem 5090,1;
+	delitem 5088,1;
+	delitem 5087,1;
+	delitem 5089,1;
+	delitem 2278,1;
+	delitem 2288,1;
+	delitem 1757,5000;
+	delitem 1764,2000;
+	delitem 2626,1;
+	getitem 1749,1;
+	close;
+ 
+ 
+  W_9:
+	if(countitem(2214)<2 || countitem(706)<100 || countitem(1059)<200 || countitem(515)<200 || countitem(622)<200 || countitem(914)<700|| countitem(7104)<300)
+	goto W_insufficient; 
+	delitem 2214,2;
+	delitem 706,100;
+	delitem 1059,200;
+	delitem 515,200;
+	delitem 622,200;
+	delitem 914,700;
+	delitem 7104,300;
+	getitem 29012,1;
+	close;
+ 
+ 
+ W_10:
+	if(countitem(705)<300 || countitem(1902)<4 || countitem(2233)<1)
+	goto W_insufficient; 
+	delitem 705,300;
+	delitem 1902,4;
+	delitem 2233,1;
+	getitem 29021,1;
+	close;
+	
+ W_11:
+	if(countitem(7277)<1 || countitem(7021)<100 || countitem(1095)<200 || countitem(618)<200 || countitem(1097)<200)
+	goto W_insufficient; 
+	delitem 7277,1;
+	delitem 7021,100;
+	delitem 1095,200;
+	delitem 618,200;
+	delitem 1097,200;
+	getitem 29022,1;
+	close;
+ 
+  W_12:
+	if(countitem(2225)<5 || countitem(4131)<10 || countitem(756)<50 || countitem(7166)<200 || countitem(5085)<1 || countitem(2223)<1)
+	goto W_insufficient; 
+	delitem 2225,5;
+	delitem 4131,10;
+	delitem 756,50;
+	delitem 7166,200;
+	delitem 5085,1;
+	delitem 2223,1;
+	getitem 29023,1;
+	close;
+	
+  W_13:
+	if(countitem(992)<150 || countitem(996)<150 || countitem(1556)<1 || countitem(4264)<10 || countitem(2213)<2)
+	goto W_insufficient; 
+	delitem 992,150;
+	delitem 996,150;
+	delitem 1556,1;
+	delitem 4264,10;
+	delitem 2213,2;
+	getitem 29026,1;
+	close;
+
+  W_14:
+	if(countitem(2286)<1 && countitem(1049)<50 && countitem(999)<10 && countitem(7047)<200)
+	goto W_insufficient;
+	delitem	7047,200;
+	delitem	2286,1;
+	delitem	1049,50;
+	delitem	999,10;
+	getitem	29041,1;
+	close;
+
+  W_15:
+	if(countitem(738)<25 && countitem(2258)<1 && countitem(7054)<100 && countitem(7053)<100 && countitem(990)<300)
+	goto W_insufficient;
+	delitem 738,25;
+	delitem 2258,1;
+	delitem 7054,100;
+	delitem 7053,100;
+	delitem 990,300;
+	getitem 29040,1;
+	close;
+
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Santa Clause]";
+	mes "You don't have the required materials.";
+	mes "Please come back when you do...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}
+
+
+//duplicate
+poring_w01,102,82,8	duplicate(Santa Quest)	Santa Quest#1santa	718

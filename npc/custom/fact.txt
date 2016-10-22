@@ -1,0 +1,37 @@
+//===== eAthena Script =======================================
+//= Fact Announcer
+//===== By: ==================================================
+//= Darkiostream
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= Eathena SVN and 3ceam and Rathena
+//===== Description: =========================================
+//= It's the announcer.
+//========Credits=======================================
+//=Newhackzone
+//=Mr. G
+//=Aerogaming.org
+//===========Site Location================
+//= http://deathro.tk and death.prohosts.org
+//===== Additional Comments: =================================
+//= v 1.1 More Facts added
+//==========================================================================
+
+-	script	Fact Announcer	-1,{
+	end;
+	OnMinute00:
+	OnMinute10:
+	OnMinute30:
+	OnMinute40:
+	switch(rand(1,5)) {
+	case 1: announce "GM and Admins Would NEVER ask your password",bc_all,0xFFFF00; end;
+	case 2: announce "Buying and Selling Via LOAD and PHP is Prohibited it May Cause Scam Cases",bc_all,0xFFFF00; end;
+	case 3: announce "Use @commands to check available commands on your account",bc_all,0xFFFF00; end;
+	case 4: announce "Please Report Any Bugs You Find",bc_all,0xFFFF00; end;
+	case 5: announce "Woe Schedule is Sunday 7PM to 9PM, Wednesday 8PM to 10PM, Friday 8PM to 10PM.",bc_all,0xFFFF00; end;
+	
+
+	}
+	end;
+}

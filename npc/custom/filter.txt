@@ -1,0 +1,25 @@
+poring_w02,0,0,0	script	restricted_manner	-1,{
+OnInit:
+    setarray .@bad_word$, "noob", "coward"; // add as your content lol
+    .@size_b = getarraysize( .@bad_word$ );
+    for( ; .@i < .@size_b; .@i++ )
+        defpattern 1, "([^:]+):.*\\s"+ .@bad_word$[.@i] +".$", "warning";
+    activatepset 1;
+    end;
+warning:
+    @warning++;
+    if ( @warning == 3 ) {
+        @warning = 0;
+        deltimer strnpcinfo(0) +"::OnDelay";
+        atcommand "@mute 5 "+ strcharinfo(0);
+    }
+    else {
+        deltimer strnpcinfo(0) +"::OnDelay";
+        addtimer 300000, strnpcinfo(0) +"::OnDelay";
+        message strcharinfo(0), "Be careful with your language... Warning "+ @warning +"/3";
+    }
+    end;
+OnDelay:
+    @warning = 0;
+    end;
+}

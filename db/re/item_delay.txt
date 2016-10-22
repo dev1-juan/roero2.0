@@ -1,0 +1,41 @@
+// Item Delay Database
+//
+// Structure of Database:
+// Item ID,Delay in Milliseconds
+//
+// NOTE:
+// There is a max concurrent number of entries set in src/map/itemdb.h as MAX_ITEMDELAYS.
+
+//12202,100	//Str_Dish10_
+//12203,100	//Agi_Dish10_
+//12204,100	//Int_Dish10_
+//12205,100	//Dex_Dish10_
+//12206,100	//Luk_Dish10_
+//12207,100	//Vit_Dish10_
+12208,100	//Battle_Manual
+12210,100	//Bubble_Gum
+14538,100	//Glass_Of_Illusion
+607,100	//Yggdrasil_Berry
+608,100	//Yggdrasil_Seed
+
+// Bifrost Items
+11522,1000	//Red_Raffle_Sap
+11523,100	//Yellow_Raffle_Sap
+11524,100	//White_Raffle_Sap
+11525,100	//Mora_Hip_Tea
+
+12658,100	//Transformation Scroll(Deviruchi)
+12659,100	//Transformation Scroll(Raydric)
+12660,100	//Transformation Scroll(Mavka)
+12661,100	//Transformation Scroll(Marduk)
+12662,100	//Transformation Scroll(Banshee)
+12663,100	//Transformation Scroll(Poring)
+12664,100	//Transformation Scroll(Golem)
+
+// FIX ME! Delays need confirmation.
+12968,100	//Emergency_Scroll1
+12969,100	//Emergency_Scroll2
+12970,100	//Emergency_Scroll3
+
+12596,100	//Magic_Candy
+14586,100	//Spark_Candy

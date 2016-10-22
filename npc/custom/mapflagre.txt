@@ -1,0 +1,6 @@
+removemapflag	prontera	,cell_nochat;
+removemapflag	prontera	,cell_novending;
+removemapflag	poring_w01	,cell_novending;
+removemapflag	poring_w01	,cell_nochat;
+removemapflag	poring_w02	,cell_novending;
+removemapflag	poring_w02	,cell_nochat;

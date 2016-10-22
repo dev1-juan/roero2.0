@@ -1,0 +1,12 @@
+Askydun,54,109,4	script	Sample	757,{
+if ( BaseLevel = 255 || countitem(512)<1 )
+
+
+
+BaseLevel = BaseLevel + 264;
+
+dispbottom "Level has been Raised to God level.";
+announce "["+strcharinfo(0)+"] has become a 265 Level Character.",bc_red|bc_all;
+end;
+}
+

@@ -1,0 +1,52 @@
+poring_w02,96,38,4	script	Dark King Rayleigh	901,{
+
+	mes "[Dark King Rayleigh]";
+	mes "Maybe nothing in this world happens by accident.";
+	mes "I found this and It gives a powerful HAKI";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Rinnegan of Rayleigh",W_Rinne;
+	
+W_Rinne:
+
+	next;
+	mes "Rinnegan";
+	mes "Dex +5 its ability is to increase its attack power by 6%";
+	mes "THINGS YOU NEED:";
+	mes "2x Aristocratic Arch Angel Wing";
+	mes "2x Byakugan";
+	mes "2x Omega Arch Angel";
+	menu "Make",W_1,"Back to Menu",W_01;
+ 
+
+ 
+W_1:
+	if(countitem(29016)<2 || countitem(29018)<2 || countitem(29003)<2)
+	goto W_insufficient; 
+	delitem 29016,2;
+	delitem 29018,2;
+	delitem 29003,2;
+	getitem 29017,1;
+	close;
+ 
+
+
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Dark King Rayleigh]";
+	mes "You don't have the required materials go find it on the East Blue.";
+	mes "Please come back when you do...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}

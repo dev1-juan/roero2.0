@@ -1,0 +1,50 @@
+/*===================================
+ * Main chat [LuzZza]
+ * Usage: @main <on|off|message>
+ *-----------------------------------*/
+ACMD_FUNC(mains)
+{
+	if( message[0] ) {
+
+		if(strcmpi(message, "on") == 0) {
+			if(!sd->state.mainchat) {
+				sd->state.mainchat = 1;
+				clif_displaymessage(fd, msg_txt(380)); // Main chat has been activated.
+			} else {
+				clif_displaymessage(fd, msg_txt(381)); // Main chat already activated.
+			}
+		} else if(strcmpi(message, "off") == 0) {
+			if(sd->state.mainchat) {
+				sd->state.mainchat = 0;
+				clif_displaymessage(fd, msg_txt(382)); // Main chat has been disabled.
+			} else {
+				clif_displaymessage(fd, msg_txt(383)); // Main chat already disabled.
+			}
+		} else {
+			if(!sd->state.mainchat) {
+				sd->state.mainchat = 1;
+				clif_displaymessage(fd, msg_txt(380)); // Main chat has been activated.
+			}
+			if (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT) {
+				clif_displaymessage(fd, msg_txt(387));
+				return -1;
+			}
+			sprintf(atcmd_output, msg_txt(386), sd->status.name, message);
+			// I use 0xFE000000 color for signalizing that this message is
+			// main chat message. 0xFE000000 is invalid color, same using
+			// 0xFF000000 for simple (not colored) GM messages. [LuzZza]
+			intif_broadcast2(atcmd_output, strlen(atcmd_output) + 1, 0xFE000000, 0, 0, 0, 0);
+
+			// Chat logging type 'M' / Main Chat
+			log_chat(LOG_CHAT_MAINCHAT, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
+		}
+		
+	} else {
+	
+		if(sd->state.mainchat) 
+			clif_displaymessage(fd, msg_txt(384)); // Main chat currently enabled. Usage: @mains <on|off>, @mains <message>.
+		else
+			clif_displaymessage(fd, msg_txt(385)); // Main chat currently disabled. Usage: @mains <on|off>, @mains <message>.
+	}
+	return 0;
+}

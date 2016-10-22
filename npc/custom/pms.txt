@@ -1,0 +1,9 @@
+///monster spawner
+
+prt_maze03,0,0,0,0	monster	Baphomet	1101,350,300000,0
+yuno_fild04,0,0,0,0	monster	Condor	1009,150,600000,0
+gef_fild01,0,0,0,0	monster	Giant Thara Frog	2605,1,3600000,0
+gl_sew01,0,0,0,0	monster	Giant Sting	2604,1,3600000,0
+yuno_fild06,0,0,0,0	monster	Flamering	2602,1,3600000,0
+gon_dun02,0,0,0,0	monster	Giant Cruiser	2603,1,3600000,0
+abyss_03,98,102,0,0	monster	Treasure Chest	2650,1,86400000,0

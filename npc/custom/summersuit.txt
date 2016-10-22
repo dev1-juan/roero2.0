@@ -1,0 +1,69 @@
+prontera,148,191,4	script	Summer Quest	845,{
+	
+
+mes "[Summer Quest]";
+mes "Hello!";
+mes "Would you like to make a summer suit in this summer time?";
+next;
+switch(select("Summer Vacation Suit?","No")) {
+
+case 1:
+mes "[Summer Quest]";
+mes "Summer Vacation Suit:";
+mes "It's a cool summer clothing for outside! going to the beach!";
+mes "looks awesome if you wear it.";
+mes "Peace! but this will stop you for attacking.";
+next;
+mes "[Summer Quest]";
+mes "We will be needing:";
+mes "5x Mink Coat";
+mes "50x Oil Paper";
+mes "50X Festival Mask";
+next;
+goto Leme;
+
+case 2:
+mes "[Summer Quest]";
+mes "Oh!. Ok.. well the come back when you change your mind!";
+close;
+
+Leme:
+mes "[Summer Quest]";
+mes "Let me check if you have the following items";
+switch(select("Ok","No you dont"))	{
+
+case 1:
+next;
+mes "[Summer Quest]";
+mes "This make take a little bit";
+	if(countitem(2311)<5 && countitem(7151)<50 && countitem(7187)<50)
+	 goto Incomplete;
+	 delitem 2311,5;
+	 delitem 7151,50;
+	 delitem 7187,50;
+	 next;
+	 getitem 29033,1;
+mes "[Summer Quest]";
+mes "Im happy that i made you the item";
+mes "See you around";
+close;
+
+case 2:
+next;
+mes "[Summer Quest]";
+mes "Oh!. Ok.. well the come back when you change your mind!";
+close;
+	 
+	 
+Incomplete:
+next;
+mes "[Summer Quest]";
+mes "There was a problem about the items you gathered";
+mes "I really need the following items to make the suit.";
+close;
+end;
+
+}
+}
+}
+

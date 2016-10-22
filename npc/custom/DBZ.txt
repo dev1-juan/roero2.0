@@ -1,0 +1,955 @@
+// Darkiostream 
+//============= Dragon Ball Z Quest -  Dende =================
+prt_fild05.gat,208,36,5	script	Dende	1686,{
+     set @npcname$, "[ Dende ]";
+     
+    if(donedbzquest >= 1) {
+        mes @npcname$;
+        mes "How are you doing, Chosen One?";
+        close;
+    }
+	
+	if (donedende >= 1) {
+		mes @npcname$;
+		mes "I'm now healed! Thanks to you!";
+		close;
+	}
+	
+	if (readdende >= 1) {
+		mes @npcname$;
+		mes "Do you have the items that could possibly heal me?";
+		next;
+		menu "Here!", L_ready, "I don't help aliens!", L_alien;
+		
+		L_ready:
+			if (countitem(915) < 100 || countitem(713) < 200 || countitem(938) < 300) {
+				mes @npcname$;
+				emotion e_sob;
+				mes "Sob, huhu T__T";
+				mes "I need these items...";
+				if (countitem(915) < 100) mes "^FF0000"+(100 - countitem(915)) +"^000000 Chrysalis";
+				if (countitem(713) < 200) mes "^FF0000"+(200 - countitem(713)) +"^000000 Empty Bottle";
+				if (countitem(938) < 300) mes "^FF0000"+(300 - countitem(938)) +"^000000 Sticky Mucus";
+				close;
+			}
+			
+			if (countitem(915) >= 100 || countitem(713) >= 200 || countitem(938) >= 300) {
+				mes @npcname$;
+				mes "Yaay thanks!";
+				delitem 915,100;
+				delitem 713,200;
+				delitem 938,300;
+				set donedende,1;
+				next;
+				mes @npcname$;
+				mes "Now, you have to talk to ^0000FFMaster Popo^000000 who's currently in Morocc.";
+				next;
+				warp "moc_ruins.gat", 102, 138;
+				close;
+			}
+	}
+	
+	mes @npcname$;
+	mes "Hi! My name is Dende, I'm a nemic!";
+	mes "Please help me out because I'm wounded?";
+	next;
+	menu "Yes", -, "Alien!? Hell no!", L_alien;
+
+	mes @npcname$;
+	mes "Really!? Thanks!";
+	next;
+	mes @npcname$;
+	mes "Bring me these items. They are supposed to heal me.";
+	mes "100 Chrysalis";
+	mes "200 Empty Bottle";
+	mes "300 Sticky Mucus";
+	set readdende, 1;
+	next;
+	mes @npcname$;
+	mes "I'll be waiting!";
+	close;
+	
+	L_alien:
+		mes "[ Dende ]";
+		mes "Alien huh!? I'll show you some aliens!";
+		mes "Wachak Pachak Kachak!";
+		next;
+		warp "jupe_core",0,0;
+		close;
+}
+
+//============= Dragon Ball Z Quest -  master popo ==============
+moc_ruins.gat,102,140,3	script	Super Master Popo	1704,{
+     set @npcname$, "[ Super Master Popo ]";
+	
+     if(donedbzquest >= 1) {
+        mes @npcname$;
+        mes "How are you doing, Chosen One?";
+        close;
+    }
+	
+	if (donemasterpopo >= 1) {
+		mes @npcname$;
+		mes "How is it going, Chosen One?";
+		close;
+	}
+	
+	if (readmasterpopo >= 1) {
+		mes @npcname$;
+		mes "Did you bring me what I asked for?";
+		menu "Here they are, master!", L_ready, "What did you want again, master?", L_list;
+		
+		L_ready:
+			if (countitem(954) < 50 || countitem(936) < 150 || countitem(919) < 300) {
+				mes @npcname$;
+				mes "I don't see them complete! You're failing to be a Chosen One right now!";
+				close;
+			}
+			
+			if (countitem(954) >= 50 || countitem(936) >= 150 || countitem(919) >= 300) {
+				mes @npcname$;
+				mes "Holy Wowow!";
+				mes "Thanks!";
+				delitem 954,50;
+				delitem 936,150;
+				delitem 919,300;
+				set donemasterpopo, 1;
+				next;
+				mes @npcname$;
+				mes "Now listen young fella, I declare you a ^FF0000Chosen One now!";
+				announce "Wow! "+strcharinfo(0)+" is now a Chosen One and will continue doing the Dragon Ball Z Quest!",bc_all,0x00FF4C;
+				next;
+				mes @npcname$;
+				mes "Good Job! You may continue now!";
+				mes "Go to Capsule Corp in Lighthalzen and meet ^0000FFBulma^000000.";
+				next;
+				warp "lighthalzen.gat", 63,131;
+				close;
+			}
+		
+		L_list:
+			mes @npcname$;
+			mes "Hmmm. You are missing...";
+			if (countitem(954) < 50) mes "^FF0000"+(50 - countitem(954)) +"^000000 Shining Scale";
+			if (countitem(936) < 150) mes "^FF0000"+(150 - countitem(936)) +"^000000 Scale Shell";
+			if (countitem(919) < 300) mes "^FF0000"+(300 - countitem(919)) +"^000000 Animal Skin";
+			close;
+	}
+	
+	if (donedende >= 1) {
+		mes @npcname$;
+		mes "OMG! Master Dende sent you here!";
+		mes "My goodness gracious golly !@#$%!";
+		next;
+		mes @npcname$;
+		mes "Since you bugged me already, I need you to get me these...";
+		mes "50 Shining Scale";
+		mes "150 Scale Shell";
+		mes "300 Animal Skin";
+		set readmasterpopo, 1;
+		next;
+		mes @npcname$;
+		mes "I'd claim you as a Chosen One if you get me those!";
+		close;
+	}
+	
+	mes @npcname$;
+	mes "Go away! I am busy!! Can't you see!?!";
+	mes "If you wanna bug me, help Dende first!";
+	close;
+}
+
+//============= Dragon Ball Z Quest -  bulma ==============
+lighthalzen.gat,58,131,5	script	Bulma	763,{
+	set @npcname$, "[ Bulma ]";
+	
+     if(donedbzquest >= 1) {
+        mes @npcname$;
+        mes "How are you doing, Chosen One?";
+        close;
+    }
+	
+	if (donebulma >= 1) {
+		mes @npcname$;
+		mes "Say hi to everyone for me!";
+		close;
+	}
+	
+	if (readbulma >= 1) {
+		mes @npcname$;
+		mes "Did you bring the items for my Capsule Corp project, Chosen One?";
+		menu "Yes", L_ready, "What are those again?", L_list;
+		
+		L_ready:
+			if (countitem(7325) < 30 || countitem(7126) < 130 || countitem(7312) < 140) {
+				mes @npcname$;
+				mes "You're lying to me, Chosen One! That's not the way to go!";
+				mes "You don't have...";
+				if (countitem(7325) < 30) mes "^FF0000"+(30 - countitem(7325)) +"^000000 Flexible Tube";
+				if (countitem(7126) < 130) mes "^FF0000"+(130 - countitem(7126)) +"^000000 Large Jellopy";
+				if (countitem(7312) < 140) mes "^FF0000"+(140 - countitem(7312)) +"^000000 Jubilee";
+				close;
+			}
+			
+			if (countitem(7325) >= 30 || countitem(7126) >= 130 || countitem(7312) >= 140) {
+				mes @npcname$;	
+				mes "Wow, all these help!";
+				delitem 7325,30;
+				delitem 7126,130;
+				delitem 7312,140;
+				set donebulma, 1;
+				next;
+				mes @npcname$;
+				mes "Thank you, Chosen One, and good luck on your journey!";
+				next;
+				mes @npcname$;
+				mes "^0000FFChi-Chi^000000 needs some comfort so try to talk to her!";
+				next;
+				warp "gon_dun02.gat",201,19;
+				close;
+			}
+		
+		L_list:
+			mes @npcname$;
+			mes "30 Flexible Tube";
+			mes "130 Large Jellopy";
+			mes "140 Jubilee";
+			close;
+	}
+	
+	if (donemasterpopo >= 1) {
+		mes @npcname$;
+		mes "Oh, master popo must sent you!";
+		mes "Okay, help me out!";
+		next;
+		mes @npcname$;
+		mes "Bring me all these for my Capsule Corp project...";
+		mes "30 Flexible Tube";
+		mes "130 Large Jellopy";
+		mes "140 Jubilee";
+		set readbulma, 1;
+		next;
+		mes @npcname$;
+		mes "Get back to me as soon as possible, Chosen One!";
+		close;
+	}
+
+	mes @npcname$;
+	mes "Sorry im busy making capsules...";	
+	mes "Talk to me later.";
+	close;
+}
+
+//============= Dragon Ball Z Quest -  Chi-Chi ==============
+gon_dun02.gat,206,19,4	script	Chi-Chi	769,{
+	set @npcname$, "[ Chi-Chi ]";
+	
+     if(donedbzquest >= 1) {
+        mes @npcname$;
+        mes "How are you doing, Chosen One?";
+        close;
+    }
+	
+	if (donechichi >= 1) {
+		mes @npcname$;
+		mes "You better do good!";
+		close;
+	}
+	
+	if (readchichi >= 1) {
+		if (countitem(1034) < 100 || countitem(953) < 50 || countitem(992) < 30 || countitem(705) < 70 || countitem(914) < 120) {
+			mes @npcname$;
+			mes "Bring me all these so I can fix the Basho fan pleaaaseeeee!";
+			if (countitem(1034) < 100) mes "^FF0000"+(100 - countitem(1034)) +"^000000 Blue Hair";
+			if (countitem(953) < 50) mes "^FF0000"+(50 - countitem(953)) +"^000000 Stone Heart";
+			if (countitem(992) < 30) mes "^FF0000"+(30 - countitem(992)) +"^000000 Wind of Verdure";
+			if (countitem(705) < 70) mes "^FF0000"+(70 - countitem(705)) +"^000000 Clover";
+			if (countitem(914) < 120) mes "^FF0000"+(120 - countitem(914)) +"^000000 Fluff";
+			close;
+		}
+		
+		if (countitem(1034) >= 100 || countitem(953) >= 50 || countitem(992) >= 30 || countitem(705) >= 70 || countitem(914) >= 120) {
+			mes @npcname$;
+			mes "Oh thank you!!";
+			delitem 1034,100;
+			delitem 953,50;
+			delitem 992,30;
+			delitem 705,70;
+			delitem 914,120;
+			set donechichi, 1;
+			next;
+			mes @npcname$;
+			mes "Now ^0000FFMaster Roshi^000000 wants to get to know you, Chosen One!";
+			next;
+			warp "jawaii.gat",277,124;
+			close;
+		}
+	}
+	
+	if (donebulma >= 1) {
+		mes @npcname$;
+		mes "Oh, chosen one, will you help me?";
+		mes "I'm gonna fix the Basho fan that my father broke.";
+		next;
+		mes @npcname$;
+		mes "Help me bring these things so I can fix it.";
+		mes "50 Stone Heart";
+		mes "100 Blue Hair";
+		mes "30 Wind of Verdure";
+		mes "70 Clover";
+		mes "120 Fluff";
+		set readchichi, 1;
+		next;
+		mes @npcname$;
+		mes "Hurry before Goku comes!";
+		close;
+	}
+	
+	mes "[ Chi-Chi ]";	
+	mes "Where's Goku.. Huhu";	
+	mes "I miss him..";
+	close;	
+}
+
+
+//============= Dragon Ball Z Quest -  master roshi ==============
+jawaii.gat,277,130,5	script	Master Roshi	766,{
+    set @npcname$, "[ Master Roshi ]";
+	
+     if(donedbzquest >= 1) {
+        mes @npcname$;
+        mes "How are you doing, Chosen One?";
+        close;
+    }
+	
+	if (donemasterbuten >= 1) {
+		mes @npcname$;
+		mes "Good times, good times...";
+		close;
+	}
+	
+	if (readmasterbuten >= 1) {
+		if (countitem(965) < 100 || countitem(966) < 100 || countitem(7065) < 100 || countitem(7003) < 50 || countitem(1019) < 200) {
+			mes @npcname$;
+			mes "What are you trying to give me? I asked for these...";
+			if (countitem(965) < 100) mes "^FF0000"+(100 - countitem(965)) +"^000000 Clam Shell";
+			if (countitem(966) < 100) mes "^FF0000"+(100 - countitem(966)) +"^000000 Clam Flesh";
+			if (countitem(7065) < 100) mes "^FF0000"+(100 - countitem(7065)) +"^000000 Sea-Otter Fur";
+			if (countitem(7003) < 50) mes "^FF0000"+(50 - countitem(7003)) +"^000000 Anolian Skin";
+			if (countitem(1019) < 200) mes "^FF0000"+(200 - countitem(1019)) +"^000000 Trunk";
+			close;
+		}
+		
+		if (countitem(965) >= 100 || countitem(966) >= 100 || countitem(7065) >= 100 || countitem(7003) >= 50 || countitem(1019) >= 200) {
+			mes @npcname$;
+			mes "This is great Chosen One!";
+			delitem 965,100;
+			delitem 966,100;
+			delitem 7065,100;
+			delitem 7003,50;
+			delitem 1019,200;
+			set donemasterbuten, 1;
+			next;
+			mes @npcname$;
+			mes "Continue your journey, Chosen One, and I'll be fine! I'm just going to take my time reminiscing all the great times of teaching that I spent on this place...";
+			next;
+			warp "louyang.gat", 275, 127;
+			close;
+		}	
+	}
+	
+	if (donechichi >= 1) {
+		if (readparam(21) == 1) {
+			mes @npcname$;
+			mes "Hey there Chosen One! I've heard so much things about you!";
+			next;
+			mes @npcname$;
+			mes "Do you want to learn Kamehameha just like I taught Goku? HA! You got long way to go son.";
+			next;
+			mes @npcname$;
+			mes "Well, my Kame House has been washed away during the darn Tsunami. Could you help me pick up things around?";
+			next;
+			mes @npcname$;
+			mes "You should be able to find me the following...";
+			mes "100 Clam Shell";
+			mes "100 Clam Flesh";
+			mes "100 Sea-Otter Fur";
+			mes "50 Anolian Skin";
+			mes "200 Trunks";
+			set readmasterbuten, 1;
+			next;
+			mes @npcname$;
+			mes "Hurry up! Those items have sentimental values with me since most of the women I've been with gave me those! Help me Chosen One!";
+			close;
+		}
+		
+		mes @npcname$;
+		mes "Ouuuu hi there sexy ladyyyy!";
+		next;
+		mes @npcname$;
+		mes "I'll give you a deal! Since Bulma wouldn't lift his skirt up in exchange of one Dragon Ball, do you dare to give me a deal similar to that?";
+		next;
+		mes @npcname$;
+		mes "AHa! I'm just playing there young lad!";
+		next;
+		mes @npcname$;
+		mes "Well, my Kame House has been washed away during the darn Tsunami. Could you help me pick up things around?";
+		next;
+		mes @npcname$;
+		mes "You should be able to find me the following...";
+		mes "100 Clam Shell";
+		mes "100 Clam Flesh";
+		mes "100 Sea-Otter Fur";
+		mes "50 Anolian Skin";
+		mes "200 Trunks";
+		set readmasterbuten, 1;
+		next;
+		mes @npcname$;
+		mes "You better hurry because I have to move in to a better place soon!";
+		close;
+	}
+
+	mes @npcname$;
+	mes "Hiiiiii~~!!! Do you have some sexy lady's magazine with you?";	
+	close;
+}
+
+
+
+//============= Dragon Ball Z Quest -  krillin ==============
+louyang.gat,275,139,5	script	Krillin	823,{
+    set @npcname$, "[ Krillin ]";
+	
+     if(donedbzquest >= 1) {
+        mes @npcname$;
+        mes "How are you doing, Chosen One?";
+        close;
+    }
+	
+    if (donekrillin >= 1) {
+        mes @npcname$;
+        mes "You're wasting your time! Talk to Goku at the land of Yggdrasil, Chosen One!";		
+        close;
+    }
+    
+    if (donemasterbuten >= 1) {
+        mes @npcname$;
+        mes "Now let's test your mind skills!";
+        mes "You've come this far and my test is different from the others!";
+        next;
+        mes @npcname$;
+        mes "I must warn you! You have to get at least ^FF00004 questions RIGHT^000000 to pass this test! Otherwise, you will fail!";
+        next;	
+        mes @npcname$;
+        mes "Are you ready?";
+        menu "Yes!", -, "No..", L_No;
+        
+        mes @npcname$;
+        set correct, 0;
+        mes "Ready, for the 1st Question!";
+        next;
+        mes @npcname$;
+        mes "1.) Who is the father of Son Goku?";
+        menu "Raditz", L_2ndq, "Bardock", L_correct1, "Vegeta", L_2ndq, "Frieza", L_2ndq;
+        
+        L_correct1:
+            set correct, 1; //1 right - 0 wrong
+            goto L_2ndq;
+        
+        L_2ndq:
+            next;
+            mes @npcname$;
+            mes "2.) Who is the older brother of Son Goku?";
+            menu "Vegeta", L_3rdq, "Trunks", L_3rdq, "Raditz", L_correct2, "Krillin", L_3rdq;
+        
+        L_correct2:
+            if (correct == 0) {
+                set correct, 1; //1right - 1 wrong
+                goto L_3rdq;
+            }
+            set correct, 2; //2right - 0 wrong
+            goto L_3rdq;
+            
+        L_3rdq:
+            next;
+            mes @npcname$;
+            mes "3.) Who is the wife of Son Goku?";
+            menu "Chi-Chi", L_correct3, "Bulma", L_4thq, "Jewelz", L_4thq, "Android 18", L_4thq;
+            
+        L_correct3:
+            if (correct == 0) {
+                set correct, 1; //1 right - 2 wrong
+                goto L_4thq;
+            }
+            if (correct == 1) {
+                set correct, 2; //2 right - 1 wrong
+                goto L_4thq;
+            }
+            set correct, 3; //3 right - 0 wrong
+            goto L_4thq;
+            
+        L_4thq:
+            next;
+            mes @npcname$;
+            mes "4.) Who's the arch-rival of Son Goku, whose the father of Trunks and Bulla as well?";	
+            menu "Broli", L_5thq, "Majin Buu", L_5thq, "Frieza", L_5thq, "Vegeta",L_correct4;
+            
+        L_correct4:
+            if (correct == 0) {
+                set correct, 1; //1 right - 3 wrong
+                goto L_5thq;
+            }
+            if (correct == 1) {
+                set correct, 2; //2 right - 2 wrong
+                goto L_5thq;
+            }
+            if (correct == 2) {
+                set correct, 3; //3 right - 1 wrong
+                goto L_5thq;
+            }
+            set correct, 4; //4 right - 0 wrong
+            goto L_5thq;
+            
+        L_5thq:
+            next;
+            mes @npcname$;
+            mes "Last question!";
+            next;
+            mes @npcname$;
+            mes "Which Super Saiyan state does a Saiyan grows a tail?";
+            menu "Super Saiyan 2", L_end, "Super Saiyan 3", L_end, "Super Saiyan 4", L_correct5, "Legendary Super Saiyan", L_end;
+            
+        L_correct5:
+            if (correct == 0) {
+                set correct, 1; //1 right - 4 wrong
+                goto L_end;
+            }
+            if (correct == 1) {
+                set correct, 2; //2 right - 3 wrong
+                goto L_end;
+            }
+            if (correct == 2) {
+                set correct, 3; //3 right - 2 wrong
+                goto L_end;
+            }
+            if (correct == 3) {
+                set correct, 4; //4 right - 1 wrong
+                goto L_end;
+            }
+            set correct, 5; //5 right - 0 wrong, perfect
+            goto L_end;
+            
+        L_end:
+            next;
+            if (correct < 4) {
+                mes @npcname$;
+                mes "FAIL! I don't accept any excuses! You're supposed to know the answers!";
+                close;
+            }
+            if (correct == 4) {
+                mes @npcname$;
+                mes "CONGRATULATIONS! You just passed my test by getting 4 answers right! You can now proceed to the next test!";
+                set donekrillin, 1;
+                next;
+                mes @npcname$;
+                mes "Son Goku will be at the Land of Yggdrasil!";
+                next;
+                warp "yggdrasil01.gat",143,254;
+                close;
+            }
+            if (correct == 5) { //perfect
+                mes @npcname$;
+                mes "Wow! You aced my test! You can now proceed to the next test! Son Goku will be at the Land of Yggdrasil!";
+                set donekrillin, 1;
+                warp "yggdrasil01.gat",143,254;
+                close;
+            }
+    }
+    
+    mes @npcname$;
+    mes "Muhaiyi ya hi~ yay!";
+    mes "Watsa Watsa Haya!";
+    close;
+	
+    L_No:	
+        mes @npcname$;
+        mes "Alright alright!";	
+        close;
+}	
+	
+//============= Dragon Ball Z Quest -  son goku ==============
+yggdrasil01.gat,143,257,5	script	Son Goku	411,{
+	set @npcname$, "[ Son Goku ]";
+	
+     if(donedbzquest >= 1) {
+        mes @npcname$;
+        mes "How are you doing, Chosen One?";
+        close;
+    }
+
+	if (donegoku >= 1) {
+        mes @npcname$;
+	    mes "Kame Hame Ha!!";
+	    percentheal -25,0;
+	    close;
+    }
+	
+        if (done2ndgoku >= 1) goto L_battle;
+	
+	if (readgoku >= 1) {
+        if (countitem(992) < 50 || countitem(545) < 50 || countitem(546) < 50 || countitem(547) < 50 || countitem(7337) < 20 || 
+            countitem(7510) < 5 || countitem(969) < 50 || Zeny < 100000000 || countitem(7211) < 5 || countitem(10008) < 5 ) {
+                mes @npcname$;
+                mes "I still need the following..";
+                if (countitem(992) < 50) mes "^FF0000"+(50 - countitem(992)) +"^000000 Wind of Verdure";
+                if (countitem(545) < 50) mes "^FF0000"+(50 - countitem(545)) +"^000000 Condensed Red Potion";
+                if (countitem(546) < 50) mes "^FF0000"+(50 - countitem(546)) +"^000000 Condensed Yellow Potion";
+                if (countitem(547) < 50) mes "^FF0000"+(50 - countitem(547)) +"^000000 Condensed White Potion";
+                if (countitem(7337) < 20) mes "^FF0000"+(20 - countitem(7337)) +"^000000 Eye of Hellion";
+                if (countitem(969) < 50) mes "^FF0000"+(50 - countitem(969)) +"^000000 Gold";
+                if (countitem(7510) < 5) mes "^FF0000"+(5 - countitem(7510)) +"^000000 Valhala's Flower";
+                if (countitem(7211) < 5) mes "^FF0000"+(5 - countitem(7211)) +"^000000 Fragment of Rossata Stone";
+                if (countitem(10008) < 5) mes "^FF0000"+(5 - countitem(10008)) +"^000000 Punisher";
+                if (Zeny < 100000000) mes "^0000FF"+(100000000 - Zeny)+"^000000 Zeny";
+                next;
+                mes @npcname$;
+                mes "Hurry up!";
+                close;
+            }
+            
+        if (countitem(992) >= 50 || countitem(545) >= 50 || countitem(546) >= 50 || countitem(547) >= 50 || countitem(7337) >= 20 || 
+            countitem(7086) >= 2 || countitem(969) >= 250 || Zeny >= 100000000 || countitem(7075) >= 2 || countitem(7076) >= 2 ) {
+                mes @npcname$;
+                mes "This is awesome! You got them all! You must feel the same thing when I collected all the Dragon Balls!";
+                delitem 992, 50;
+                delitem 545, 50;
+                delitem 546, 50;
+                delitem 547, 50;
+                delitem 7337, 20;
+                delitem 969, 50;
+                delitem 7510, 5;
+                delitem 7211, 5;
+                delitem 10008, 5;
+                set Zeny, Zeny - 100000000;
+                set done2ndgoku, 1;
+                next;
+                mes @npcname$;
+                mes "You really are a 'Chosen One'!! But before I let you go, you should know by now that...";
+                next;
+                mes @npcname$;
+                mes "...that I am energetic, cheerful, and most of all, I love being competed! So let's see what you got!";
+                goto L_battle;
+                
+            
+            L_battle:
+                mes @npcname$;
+                mes "Choose one!";
+                menu "One", L_one, "Two", L_two, "Three", L_three, "Four", L_four;
+                
+                L_one:
+                    set whatchugot, 1;
+                    goto L_random;
+                
+                L_two:
+                    set whatchugot, 2;
+                    goto L_random;
+                
+                L_three:
+                    set whatchugot, 3;
+                    goto L_random;
+                    
+                L_four:
+                    set whatchugot, 4;
+                    goto L_random;
+                    
+                L_random:
+                    set .@goku, rand(1,8);
+                    if (.@goku == 1) set gokugot, 1;
+                    else if (.@goku == 2) set gokugot, 2;
+                    else if (.@goku == 3) set gokugot, 3;
+                    else if (.@goku == 4) set gokugot, 4;
+                    else if (.@goku == 5) set gokugot, 5;
+                    else if (.@goku == 6) set gokugot, 6;
+                    else if (.@goku == 7) set gokugot, 7;
+                    else if (.@goku == 8) set gokugot, 8;
+                    
+                    if (whatchugot >= gokugot) {
+                        mes @npcname$;
+                        mes "PFFT YOU CHEATED, DIDN'T YOU?!?!";
+                        next;
+                        mes "^00FFFFMaster Roshi whispers to tell Son Goku to calm down, saying losing is a part of competition.^000000";
+                        next;
+                        mes @npcname$;
+                        mes "Fine fine! I guess you got me... but I will get you next time!";
+                        next;
+                        mes @npcname$;
+                        mes "Until then, Chosen One!";
+                        set donegoku, 1;
+                        next;
+                        warp "himinn.gat",49,45;
+                        close;
+                    }
+                    else if (whatchugot < gokugot) {
+                        mes @npcname$;
+                        set watchugot, 0;
+                        mes "HA! Yeah, that's right! I beat you!!";
+                        close;
+                    }
+        }
+    }
+	
+	if (donekarin >= 1) {
+        if (countitem(7140) == 0) {
+            mes @npcname$;
+            mes "You're supposed to have 1,000 pcs of Seed of Life!";
+            close;
+        }
+        if (countitem(7140) < 1000) {
+            mes @npcname$;
+            mes "Where are the other ^FF0000"+(1000 - countitem(7140)) +"^000000 pcs of Seed of Life?!";
+            close;
+        }
+        if (countitem(7140) >= 1000) {
+            mes @npcname$;
+            mes "These will make both of us full! Here have some!";
+            delitem 7140, 1000;
+            next;
+            mes @npcname$;
+            mes "Wait! Watch out! Something's burning inside of mee!";
+            percentheal 100,100;
+            next;
+            mes @npcname$;
+            mes "ARghhhhhhhhh!";
+            percentheal -25,-25;
+            next;
+            mes @npcname$;
+            mes "I can't fight it!!";
+            percentheal -25,-25;
+            next;
+            mes @npcname$;
+            mes "I'm not trying to kill you! I just can't really fight it!";
+            percentheal -25,-25;
+            next;
+            mes @npcname$;
+            mes "You're going to have to step away!";
+            percentheal -24,-24;
+            next;
+            mes @npcname$;
+            mes "Argh! or maybe not! I thought I was going to kill you! I didn't want to kill you because, I need you to get me more stuffs Chosen One!";
+            next;
+            mes @npcname$;
+            mes "These are the stuffs I need! Please get back to me as soon as possible so we both can continue to our own quests...";
+            mes "Thanks, Now bring me these items";
+            mes "50 Wind of Verdure";
+    		mes "50 Condensed Red Potion";
+    		mes "50 Condensed Yellow Potion";
+    		mes "50 Condensed White Potion";
+    		mes "20 Eye of Hellion";	
+            mes "50 Gold";
+            mes "100,000,000 Zeny";
+            mes "5 Valhala's Flower";
+            mes "5 Fragment of Rossata Stone";
+            mes "5 Punisher";
+            set readgoku, 1;
+            next;
+            mes @npcname$;
+            mes "Get back to me as soon as possible or I will eat you alive!";
+            close;
+        }
+    }
+	
+	if (donekrillin >= 1) {
+        mes @npcname$;
+		mes "Eh!? I'm Dead and hungry! Could you bring me some Magic Beans?";
+		mes "Talk to Master Karin at the Prontera cementery and get some for me please!";
+		menu "Uhh, Okay!",-,"Hell no!",L_kame;
+		set talktokarin,1;
+		close;
+		
+		L_kame:	
+            mes "[ Son Goku ]";	
+            mes "Kame! Hame!! HaAaaaA!?!?!?!@#$%";
+            next;
+            percentheal -100,0;	
+            warp "prontera.gat",0,0;
+            close;
+	}
+    
+	mes @npcname$;
+	mes "Kame Hame Ha!!";
+	percentheal -25,0;
+	close;
+}
+
+//============= Dragon Ball Z Quest -  master karin ==============
+prontera,281,339,3	script	Master Karin	421,{	
+	set @npcname$, "[ Master Karin ]";
+	
+     if(donedbzquest >= 1) {
+        mes @npcname$;
+        mes "How are you doing, Chosen One?";
+        close;
+    }
+	
+	if (readgoku >= 1) {
+        mes @npcname$;
+        mes "Goku must be proud of you now, huh?";
+        close;
+    }
+	
+    if(donekarin >= 1) {
+        mes @npcname$;
+        mes "Hurry! Goku needs you!";
+        next;
+        warp "yggdrasil01.gat",143,254;
+        close;
+    }
+
+    if (bringme335>= 1) {
+        if (countitem(608) == 0) {
+            mes @npcname$;
+            mes "Bring me the 1000 pieces of Yggdrasil Seeds in exchange for 1000 Magic Beans!";
+            close;
+        }
+        if (countitem(608) < 1000) {
+            mes @npcname$;
+            mes "You're missing ^FF0000"+(1000 - countitem(608)) +"^000000 pcs of Yggdrasil Seed!";
+            close;
+        }
+        if (countitem(608) >= 1000) {
+            mes @npcname$;
+            mes "Aha! I'm GAY you brought enough Yggdrasil Seed! But before I give the 1000 pcs of Magic Beans, answer my survey first!";
+            next;
+            mes @npcname$;
+            mes "How old are you?";
+            menu "1~10",-,"11~20",-,"21~30",-;
+            next;
+            mes @npcname$;
+            mes "Am I cute?";
+            menu "Yes",-,"NO!",-;
+            next;
+            mes @npcname$;
+            mes "Am I sexy?";
+            menu "Yes",-,"WTH?",-;
+            next;
+            mes @npcname$;
+            mes "Are you sure?";
+            menu "Yes",-,"No",-;
+            next;
+            mes @npcname$;
+            mes "Do you watch Dragon Ball Z?";
+            menu "Yes",-,"NO",-,"Is that a TV Show?",-;
+            next;
+            mes @npcname$;
+            mes "Are you a Boy or a Girl?";
+            menu "Boy",-,"Girl",-;
+            next;	
+            mes @npcname$;
+            mes "Are you dumb?";
+            menu "Yes",-;
+            next;
+            mes @npcname$;
+            mes "Are GMs here good looking?";
+            menu "Yes",-,"Yes",-,"Yes",-,"Yes",-,"Yes",-,"Yes",-;
+            next;
+            mes @npcname$;
+            mes "Do you want to go on?";
+            menu "Yes",-,"PLEASE!!!!",-,"No?",-;
+            next;
+            mes @npcname$;
+            mes "Are you pissed off?";
+            menu "Yes",-,"Nope.",-;
+            next;
+            mes @npcname$;
+            mes "Im sleepy...";	
+            menu "Dont sleep mister pussy ket",-,"OMG!!",-;
+            next;
+            mes @npcname$;
+            mes "Last Question. Are you smart?";
+            menu "Yes",-,"No, just to finish this off!",-;
+            next;
+            mes @npcname$;
+            mes "Do you really think that was the last question?";
+            menu "Yes",-,"LOL!",-;
+            next;
+            mes @npcname$;
+            mes "Is it a Deal? or a no Deal?!";
+            menu "Deal",-,"No Deal",-,"Mc Donalds",-;
+            next;
+            
+            mes @npcname$;
+            mes "Great, here you go!";
+            delitem 608,1000;
+            getitem 7140,1000;
+            set donekarin,1;
+            next;
+            mes @npcname$;
+            mes "Thank you for bringing me 1000 Yggdrasil Seeds and answering my survey! You can now return to Goku!";
+            next;
+            warp "yggdrasil01.gat",143,254;
+            close;
+        }
+    }
+
+    if(talktokarin >= 1) {
+        mes @npcname$;
+        mes "Goku must have sent you here! Bring me 1000 pieces of Yggdrasil Seeds in exchange for 10,000 Magic Beans!";
+        set bringme335, 1;
+        close;
+    }
+
+    mes @npcname$;
+    mes "Miao ~ o-o";
+    close;
+}
+
+//============= Dragon Ball Z Quest -  shenron ==============
+himinn.gat,49,49,3	script	Shenron	1885,{
+    set @npcname$, "[ Shenron ]";
+	
+    if(donedbzquest >= 1) {
+        mes @npcname$;
+        mes "How are you doing, Chosen One?";
+        close;
+    }
+	
+    if (donegoku >= 1) {
+        mes @npcname$;
+        mes "Greetings, Chosen one.";
+        mes "Do you want to claim your prize now..?";
+        menu "Yes",-,"No",L_no;
+        next;
+
+        set .@gamble1,rand(1,10);
+        if (.@gamble1 == 1) set .@item,29002;
+        else if (.@gamble1 == 2) set .@item,29003;
+        else if (.@gamble1 == 3) set .@item,29002;		
+        else if (.@gamble1 == 4) set .@item,29003;
+        else if (.@gamble1 == 5) set .@item,29002; 
+        else if (.@gamble1 == 6) set .@item,29003;
+        else if (.@gamble1 == 7) set .@item,24999;
+        else if (.@gamble1 == 8) set .@item,29003;
+        else if (.@gamble1 == 9) set .@item,29002;
+        else if (.@gamble1 == 10) set .@item,29003;
+        
+        getitem .@item,1;
+        
+		set donedbzquest,1;
+		
+        announce "[ Shenron ] - "+strcharinfo(0)+" just finished the Dragon Ball Z Quest! and Got his Omega Wings or DeathRO Coin",8;
+        mes @npcname$;
+        mes "There you go, thank you for visiting me..";
+        next;
+        warp "prontera.gat",0,0;	
+        close;
+        
+        L_no:	
+            mes @npcname$;
+            mes "You can see me again if you change your mind..";	
+            close;	
+    }
+
+    mes @npcname$;
+    mes "Roar ~";	
+    close;	
+}

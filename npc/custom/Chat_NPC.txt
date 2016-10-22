@@ -1,0 +1,39 @@
+Askydun,103,107,4	script	Broadcaster	954,{
+set .Minutes,.5;
+if( .DelayTime <= gettimetick(2)) {
+	mes "Do you want to announce ? and it cost 5 Million Zeny.";
+	if( select("Yes:No") == 2 ) close;
+	mes "Please Write Down Your Message ";
+	input .Message$;
+next;
+	mes "Please select the color";
+	switch(select("Default")){
+		case 1:
+		set .@color$,0xFF0000; //not working color
+	goto L_announce;
+	}
+L_announce:
+	set .DelayTime,gettimetick(2) + ( .Minutes * 60 );
+	set zeny,zeny-5000000;
+	announce "["+strcharinfo(0)+"] : "+.Message$,0;
+	end;
+}else if( .DelayTime > gettimetick(2) ){
+	set .last,.DelayTime - gettimetick(2);
+	set .@min,  .last % (24*60*60) % (60*60) / (60);
+	set .@sec,  .last % (24*60*60) % (60*60) % (60);
+	mes "Wait for "+.@min+" minutes "+.@sec+" seconds";
+}
+close;
+}
+
+poring_w02,101,101,4	duplicate(Broadcaster)	Broadcaster#1	954
+alberta,31,240,4	duplicate(Broadcaster)	Broadcaster#2	954
+aldebaran,134,123,4	duplicate(Broadcaster)	Broadcaster#3	954
+prontera,164,191,4	duplicate(Broadcaster)	Broadcaster#4	954
+amatsu,102,154,4	duplicate(Broadcaster)	Broadcaster#5	954
+louyang,222,120,4	duplicate(Broadcaster)	Broadcaster#6	954
+xmas,155,126,4	duplicate(Broadcaster)	Broadcaster#7	954
+geffen,111,64,4	duplicate(Broadcaster)	Broadcaster#8	954
+veins,210,119,4	duplicate(Broadcaster)	Broadcaster#9	954
+prtg_cas01,120,167,4	duplicate(Broadcaster)	Broadcaster#10	954
+prtg_cas01,205,205,4	duplicate(Broadcaster)	Broadcaster#11	954

@@ -1,0 +1,73 @@
+poring_w02,121,87,3	script	Jack en Poy	100,{
+
+mes "[Jack en Poy]";
+mes "Hi do you like to play jack en poy?";
+next;
+menu "Yes",L_YES,"No",L_NO;
+L_NO:
+next;
+mes "[Jack en Poy]";
+mes "Ok Comeback again.";
+close;
+L_YES:
+next;
+mes "[Jack en Poy]";
+if(.@wincount == 7) {
+mes "Wow your good!! ";
+set .@wincount,0;
+close;
+}
+mes "OK here goes";
+set .@npcpoy, rand(1,3); // 1 = Rock , 2 = Paper, 3 = Scissors
+set .@yourspoy, rand(1,3);
+next;
+mes ".....";
+next;
+if(.@npcpoy == 1 && .@yourspoy == 2) {
+emotion e_paper, 1;
+emotion e_rock, 0;
+mes "You win!";
+set .@wincount, .@wincount+1;
+goto L_YES;
+}
+if(.@npcpoy == 1 && .@yourspoy == 3) {
+emotion e_scissors, 1;
+emotion e_rock, 0;
+mes "You lose!";
+set .@wincount, 0;
+mes "Sorry dude! better luck next time!";
+close;
+}
+if(.@npcpoy == 2 && .@yourspoy == 1) {
+emotion e_rock, 1;
+emotion e_paper, 0;
+mes "You lose!";
+set .@wincount, 0;
+mes "Sorry dude! better luck next time!";
+close;
+}
+if(.@npcpoy == 2 && .@yourspoy == 3) {
+emotion e_scissors, 1;
+emotion e_paper, 0;
+mes "You win!";
+set .@wincount, .@wincount+1;
+goto L_YES;
+}
+if(.@npcpoy == 3 && .@yourspoy == 1) {
+emotion e_rock, 1;
+emotion e_scissors, 0;
+mes "You win!";
+set .@wincount, .@wincount+1;
+goto L_YES;
+}
+if(.@npcpoy == 3 && .@yourspoy == 2) {
+emotion e_paper, 1;
+emotion e_scissors, 0;
+mes "You lose!";
+set .@wincount, 0;
+mes "Sorry dude! better luck next time!";
+close;
+}
+mes "Its a draw!";
+goto L_YES;
+}

@@ -1,0 +1,111 @@
+poring_w02,82,30,8	script	Dark Priest	1198,{
+
+	mes "[Dark Priest]";
+	mes "I have extreme Anger for Atheism!!";
+	mes "I will give you items to hurt them!!";
+	mes "Bring me Items and Ill do it!!";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Bishop Hat",W_BH,
+	"AlMighty Staff",W_AMS,
+	"Fire Blazed Sword",W_FBS,
+	"Nothing",W_cancel;
+	
+W_BH:
+
+	next;
+	mes "The Hat worn by DBZ Great King Kai";
+	mes "Nullify The use of Gemstone on certain skills";
+	mes "Maximum Hp + 15k";
+	mes "Vit + 5";
+	mes "-=THINGS YOU NEED=-";
+	mes "1x Beret";
+	mes "1500x Fabric";
+	mes "1000x Star Dust";
+	mes "10x Muscovite";
+	menu "Make",W_1,"Back to Menu",W_01;
+
+W_AMS:
+
+	next;
+	mes "Long ago on the distant land and avatar roku use this staff";
+	mes "Nullify Magic Defence";
+	mes "MATK + 20%, Dex+5 , Int+5";
+	mes "Minus Aftercast Delay 15%, Vit+5, HP+ 500";
+	mes "-=THINGS YOU NEED=-";
+	mes "1x Croce Staff";
+	mes "1x Staff of destruction";
+	mes "1x Golden Thief Bug Card";
+	mes "1500x Flash Light";
+	menu "Make",W_2,"Back to Menu",W_01;
+
+
+W_FBS:
+
+	next;
+	mes "A sword Created by the anger of SAITAMA";
+	mes "FIRE PROPERTY";
+	mes "mammonite skill push target 5cells";
+	mes "str + 15,increase Whitesmith's cart termination by 10%";
+	mes "Int + 5,increase Creator's Demonstration by 10%";
+	mes "MATK + 20%, Dex+5 , Int+5";
+	mes "Minus Aftercast Delay 15%, Vit+5, HP+ 500";
+	mes "-=THINGS YOU NEED=-";
+	mes "1x Exorciser";
+	mes "1x Guillotine";
+	mes "1x Whitesmith Card";
+	mes "1500x Tassel";
+	menu "Make",W_3,"Back to Menu",W_01;
+
+
+ 
+W_1:
+	if(countitem(5172)<1 || countitem(1059)<1500 || countitem(1001)<1000 || countitem(7292)<10)
+	goto W_insufficient; 
+	delitem 5172,1;
+	delitem 1059,1500;
+	delitem 1001,1000;
+	delitem 7292,10;
+	getitem 29027,1;
+	close;
+
+W_2:
+	if(countitem(1647)<1 || countitem(2000)<1 || countitem(4128)<1 || countitem(7327)<1500)
+	goto W_insufficient; 
+	delitem 1647,1;
+	delitem 2000,1;
+	delitem 4128,1;
+	delitem 7327,1500;
+	getitem 1612,1;
+	close;
+
+W_3:
+	if(countitem(1233)<1 || countitem(1369)<1 || countitem(4361)<1 || countitem(7301)<1500)
+	goto W_insufficient; 
+	delitem 1233,1;
+	delitem 1369,1;
+	delitem 4361,1;
+	delitem 7301,1500;
+	getitem 1134,1;
+	close;
+
+ 
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Dark Priest]";
+	mes "You don't have the required materials Nigga";
+	mes "Please come back when you do...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}

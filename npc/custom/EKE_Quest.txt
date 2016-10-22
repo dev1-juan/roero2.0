@@ -1,0 +1,58 @@
+Askydun,161,91,3	script	Elf King	108,{
+
+	mes "[Elf King]";
+	mes "I can help you make a Ear like Mine,";
+	mes "if you bring me the right items.";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Create Elf King Ears",W_Eke,
+	"Nothing",W_cancel;
+	
+W_Eke:
+
+	next;
+	mes "Elf King Ears Gives:";
+	mes "+5 Agi, +2 Int, +4 Dex and the Heal Skill";
+	mes "THINGS YOU NEED:";
+	mes "30x Elven Ears";
+	mes "200x Elder Pixie's Moustache";
+	mes "300x Star Dust";
+	mes "180x Star Crumb";
+	mes "150x Yellow Gemstone";
+	mes "30x Coronet";
+	menu "Make",W_Eke2,"Back to Menu",W_01;
+ 
+
+
+
+W_Eke2:
+	if(countitem(2286)<30 || countitem(1040)<200 || countitem(1001)<300 || countitem(1000)<180 || countitem(715)<150 || countitem(2249)<30)
+	goto W_insufficient; 
+	delitem 2286,30;
+	delitem 1040,200;
+	delitem 1001,300;
+	delitem 1000,180;
+	delitem 715,150;
+	delitem 2249,30;
+	getitem 29008,1;
+	close;
+ 
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Elf King]";
+	mes "You don't have the required materials.";
+	mes "Please come back when you do...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}

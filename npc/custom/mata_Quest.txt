@@ -1,0 +1,88 @@
+poring_w02,92,38,4	script	Gaara of Sand	636,{
+
+	mes "[Gaara of Sand]";
+	mes "You can see the power of Ninja";
+	mes "When you look them in eyes";
+	mes "I can give powerful eyes";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Byakugan",W_Byaku,
+	"Shinigami",W_Shini,
+	"Nothing",W_cancel;
+	
+W_Byaku:
+
+	next;
+	mes "Byakugan From Hyuga";
+	mes "Str + 5, -3% Damage from melee";
+	mes "THINGS YOU NEED:";
+	mes "1000x Skull";
+	mes "999x Clattering Skull";
+	mes "300x Blue Feather";
+	mes "10x Rider Insignia[1]";
+	mes "1x AeRO Coin";
+	menu "Make",W_1,"Back to Menu",W_01;
+ 
+W_Shini:
+
+	next;
+	mes "Shinigami";
+	mes "Vit +5, can see hiding and Cloaking";
+	mes "THINGS YOU NEED:";
+	mes "1000x Skull";
+	mes "999x Clattering Skull";
+	mes "300x Red Feather";
+	mes "10x Pyroxene";
+	mes "1x AeRO Coin";
+	menu "Make",W_2,"Back to Menu",W_01;
+
+
+ 
+ 
+ 
+ 
+W_1:
+	if(countitem(7005)<1000 || countitem(7752)<999|| countitem(7441)<300 || countitem(2530)<10 || countitem(24999)<1)
+	goto W_insufficient; 
+	delitem 7005,1000;
+	delitem 7752,999;
+	delitem 7441,300;
+	delitem 2530,10;
+	delitem 24999,1;
+	getitem 29018,1;
+	close;
+	
+	
+W_2:
+	if(countitem(7005)<1000 || countitem(7752)<999|| countitem(7440)<300 || countitem(7296)<10 || countitem(24999)<1)
+	goto W_insufficient; 
+	delitem 7005,1000;
+	delitem 7752,999;
+	delitem 7440,300;
+	delitem 7296,10;
+	delitem 24999,1;
+	getitem 29019,1;
+	close;	
+ 
+ 
+
+ 
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Gaara of Sand]";
+	mes "You don't have the required materials.";
+	mes "Please come back when you do Ninja Boi...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}

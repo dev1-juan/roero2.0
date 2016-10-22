@@ -1,0 +1,195 @@
+
+//gonryun,167,100,3	script	Poring Coin X changer	909,{
+prontera,147,174,5	script	Poring Coin X changer	909,{
+
+mes "[Mr. Poring]";
+mes "I am able to convert PVP points into Poring Coins";
+mes "What do you want to do?";
+    next;
+    switch(select("Information","Convert")) {
+        case 1:
+            mes @name$;
+            mes "I can convert your Poring Coins to PVP Points.";
+            mes "1 Poring Coin = 15 PVP Points";
+            close;
+        case 2:
+            switch(select("PVP points to Poring Coin")) {
+                case 1:
+			mes .@name$;
+			mes "How many Poring Coin(s) do you want?";
+			input .@num;
+			next;
+
+			if( .@num <= 0 || #CASHPOINTS < .@num * 15 ) {
+				mes .@name$;
+				mes "Sorry, you don't have enough cashpoints!";
+				close;
+			}
+			mes .@name$;
+			mes "This will cost ^FF0000" +(.@num * 15)+ " cashpoints^000000.";
+			next;
+
+			if( select("Proceed:Nevermind") -1 ) {
+				mes .@name$;
+				mes "Goodbye!";
+				close;
+			}
+			set #CASHPOINTS, #CASHPOINTS - .@num * 15;
+			dispbottom "Lost: " +(.@num * 15)+ " cashpoints. Total: " +#CASHPOINTS+" cashpoints.";
+			getitem 7539, .@num;
+			break;
+	}
+	close;
+}
+}
+
+//gonryun,167,98,3	script	The Messenger	990,{
+prontera,140,174,4	script	The Messenger	990,{
+
+
+mes "[^0000FFMr. Gernan^000000]";
+mes "Good day! I'm the messenger of AeRO.";
+mes "I can send you into the coliseum where Juggernaut can be found.";
+next;
+switch(select("Juggernaut?","Let me go in!","Close")) {
+
+case 1:
+mes "Yes the actual juggernaut, a mighty monster that ressurects every day and night.";
+mes "I wound be happy if you join, but its PK inside meaning to say everyone have chance to kill you and others.";
+mes "Be careful.";
+next;
+goto Next1;
+
+case 2:
+goto Next1;
+
+case 3:
+mes "[^0000FFMr. Gernan^000000]";
+mes "Come Again, if you want to join.";
+break;
+}
+close;
+end;
+
+Next1:
+mes "[^0000FFMr. Gernan^000000]";
+mes "There are agreement before I can let you to go inside.";
+mes "You would have to have a ^0000FF1 PCS^000000 of Poring coins in able to go inside.";
+switch(select("Proceed","No")) {
+case 1:
+if(countitem(7539)<1)
+	goto Reset;
+	delitem 7539,1;
+warp "coliseum",0,0;
+close;
+
+case 2:
+close;
+end;
+
+// item check
+Reset:
+	next;
+	mes "[^0000FFMr. Gernan^000000]";
+	mes "You don't have the Poring Coins";
+	mes "Please come back when you do...";
+	close;
+
+}
+}
+
+-	script	juggs	-1,{
+
+OnClock2350:
+OnClock1150:
+enablenpc "The Messenger#2";
+disablenpc "The Messenger";
+atcommand "@doommap coliseum";
+announce "The coliseum Juggernaut will soon to arise",0;
+killmonsterall "coliseum";
+sleep 300000;
+announce "Juggernaut will risen in coliseum in 5 minutes",0;
+sleep 270000;
+announce "Juggernaut will respawn inside the coliseum a few seconds so be ready",0;
+sleep 30000;
+monster "coliseum",0,0,"Juggernaut",2600,1;
+disablenpc "The Messenger#2";
+enablenpc "The Messenger";
+initnpctimer;
+end;
+
+OnPCDieEvent:
+getmapxy .@mapnvz$,.@xnvz,.@ynvz,0;
+if ( .@mapnvz$ == "coliseum") {
+sleep2 1;
+warp "poring_w02",99,72;
+atcommand "@alive "+ strcharinfo(0);
+}
+}
+
+coliseum,0,0,1	script	juggs	-1,{
+
+OnClock2350:
+OnClock2351:
+OnClock1150:
+OnClock1151:
+	atcommand "@doommap";
+end;
+}
+
+
+//gonryun,167,98,3	script	The Messenger#2	990,{
+prontera,140,174,4	script	The Messenger#2	990,{
+
+mes "[^0000FFMr. Gernan^000000]";
+mes "Good day! I'm the messenger of AeRO.";
+mes "I can send you into the coliseum where Juggernaut can be found.";
+next;
+switch(select("Juggernaut?","Let me go in!","Close")) {
+
+case 1:
+mes "Yes the actual juggernaut, a mighty monster that ressurects every day and night.";
+mes "I wound be happy if you join, but its PK inside meaning to say everyone have chance to kill you and others.";
+mes "Be careful.";
+next;
+goto Next2;
+
+
+case 2:
+goto Next2;
+
+case 3:
+mes "[^0000FFMr. Gernan^000000]";
+mes "Come Again, if you want to join.";
+break;
+}
+close;
+end;
+
+Next2:
+mes "[^0000FFMr. Gernan^000000]";
+mes "There are agreement before I can let you to go inside.";
+mes "You would have to have a ^0000FF1 PCS^000000 of Poring coins in able to go inside.";
+switch(select("Proceed","No")) {
+case 1:
+next;
+mes "[^0000FFMr. Gernan^000000]";
+mes "Please wait a few minutes..";
+close;
+
+case 2:
+close;
+end;
+}
+}
+
+// == Mapflags
+coliseum	mapflag	pvp
+coliseum	mapflag	nowarp
+coliseum	mapflag	nowarpto
+coliseum	mapflag	noteleport
+coliseum	mapflag	nosave
+coliseum	mapflag	nomemo
+coliseum	mapflag	nobranch
+coliseum	mapflag	nocommand 2
+coliseum	mapflag	pvp_noguild

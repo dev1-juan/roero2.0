@@ -1,0 +1,129 @@
+poring_w02,96,101,5	script	Emperium Breaker	1288,{
+
+// What Map will be used
+set .Map$,"job3_arch01";
+// How many Top Breaker will be Recorded
+set .TopRank,5;
+// Message to Inform Players while inside the Room
+setarray .Instruction$[0],
+			"You need a guild to be able to hit the Emperium, create one with the Emperium i have you if you don't have any. Please read carefully.",
+			"This room is to test how quick you can break an Emperium.",
+			"So get prepared, the Emperium will spawn in a few seconds.";
+			
+			
+			
+while( 1 ){
+mes "Emperium Breaker Room to test how quick you destroy it.";
+mes "You can compare too the records of other players.";
+next;
+switch( select( ( getmapusers( .Map$ ) )?"^FF0000No available":"^0000FFAvailable^000000",
+				"Top ^FF0000"+.TopRank+"^000000 Record",
+				( getgmlevel() < 90 )?"":"^FF0000[GM]^000000 Reset Room",
+				( getgmlevel() < 90 )?"":"^FF0000[GM]^000000 Reset Ladder" )){
+Case 1:
+	if( getmapusers( .Map$ ) ){
+		mes "There is another player, please wait until the player ends.";
+		next;
+		break;
+		}
+	warp .Map$,0,0;
+	getitem 714,1; // Emperium if they don't have a guild they can easly create one and test on the Emperium Room
+	killmonster .Map$,"All";
+//	removemapflag .Map$,mf_noskill;
+	donpcevent strnpcinfo(0)+"::OnReady";
+	end;
+Case 2:
+	mes "^ED1ADCBest Record^000000 : "+LatestRecord/1000+"."+LatestRecord%1000+" Seconds.";
+	for( set .@i,0; .@i < .TopRank; set .@i,.@i + 1 ){
+		if( !$TopRankTime[.@i] ) break;
+		mes "^FF0000Top "+( .@i + 1 )+" : ^0000FF"+$TopName$[.@i]+" ";
+		mes "^FF0000Time : ^ED1ADC[ "+$TopRankTime[.@i]/1000+"."+$TopRankTime[.@i]%1000+" Sec. ]^000000 ";
+	}
+	next;
+	break;
+
+Case 3:
+	mapannounce .Map$,"GM reset the record of Emperium Breaker.",0,0x00FF00;
+	killmonster .Map$,"All";
+	sleep2 3000;
+	mapwarp .Map$,"poring_w02",99,70;
+	mes "List of players will be sent Out";
+	next;
+	break;
+Case 4:	
+	switch( select( "^0000FFAll Player^000000:^FF0000One Player^000000" ) ){
+		Case 1:
+			deletearray $TopRankTime[0],getarraysize( $TopRankTime );
+			deletearray $TopName$[0],getarraysize( $TopName$ );
+			mes "RESETED WHOLE LADDER.";
+			break;
+		Case 2:
+			mes "Please input the ^FF0000EXACT NAME^000000 of player you want to delete.";
+			input .Name$;
+			for( set .@i,0; .@i < .TopRank; set .@i,.@i + 1 ){
+				if( .Name$ == $TopName$[.@i] ){
+					deletearray $TopName$[.@i],1;
+					deletearray $TopRankTime[.@i],1;
+					mes "Removed ^FF0000"+.Name$+"^000000 from the List.";
+				}
+			}
+		}
+	next;
+	break;
+	}
+}
+
+OnReady:
+sleep2 3000;
+for( set .@i,0; .@i < getarraysize( .Instruction$ ); set .@i,.@i + 1 ){
+	mapannounce .Map$,.Instruction$[.@i],0,0x00FF00;
+	sleep2 2500;
+	}
+for( set .@i,5; .@i > 0; set .@i,.@i - 1 ){
+	mapannounce .Map$," : "+.@i+" seconds left.",0,0x00FF00;
+	sleep2 1000;
+	}
+//mapannounce .Map$,"Hit the Emperium Now and Skills Disabled.",0,0x00FF00;
+//setmapflag .Map$,mf_noskill;
+monster .Map$,29,27,"Breaker Test",1288,1,strnpcinfo(0)+"::OnBreaked";
+set .Record,0;
+sleep2 500;
+initnpctimer;
+end;
+
+OnTimer600000:
+if( !mobcount( .Map$,strnpcinfo(0)+"::OnBreaked" ) ) end;
+	mapannounce .Map$,"You spent too much time. i think you are AFK , so you are out.",0,0xED1ADC;
+	sleep2 3000;
+	mapwarp .Map$,"poring_w02",99,70;
+	stopnpctimer;
+end;
+
+OnBreaked:
+	set .Time,getnpctimer(0);
+	copyarray .@tempName$[0],$TopName$[0],getarraysize( $TopName$ );
+	copyarray .@tempRecord[0],$TopRankTime[0],getarraysize( $TopRankTime[0] );
+	set LatestRecord,.Time;
+	for( set .@i,0; .@i < .TopRank; set .@i,.@i + 1 ){
+		if( .Time < $TopRankTime[.@i] || !$TopRankTime[.@i] ){
+				set $TopRankTime[.@i],.Time;
+				set $TopName$[.@i],strcharinfo(0);
+				copyarray $TopRankTime[.@i + 1],.@tempRecord[0],getarraysize( .@tempRecord );
+				copyarray $TopName$[.@i + 1],.@tempName$[0],getarraysize( .@tempName$ );
+			announce "[ "+strcharinfo(0)+" ] Got the Ranking "+( .@i + 1 )+" on the Emperium Breaker Room with a record of "+.Time/1000+"."+.Time%1000+" seconds !!!",bc_all,0xED1ADC;
+			break;
+			}
+		}
+	stopnpctimer;
+	announce "Time tooked : "+.Time/1000+"."+.Time%1000+" Seconds. ",bc_self,0xED1ADC;
+//	removemapflag .Map$,mf_noskill;
+	sleep2 5000;
+	mapwarp .Map$,"poring_w02",99,70; //here is the place of the npc
+	end;
+}
+	
+job3_arch01	mapflag	nocommand	50
+job3_arch01	mapflag	gvg	on
+job3_arch01	mapflag	gvg_castle
+job3_arch01	mapflag	monster_noteleport
+job3_arch01	mapflag	nosave	SavePoint

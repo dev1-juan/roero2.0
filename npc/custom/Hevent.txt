@@ -1,0 +1,213 @@
+//===== rAthena Script ======================================= 
+//= Halloween Event
+//===== By: ================================================== 
+//= Newhackzone
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: ========================================= 
+//= Halloween NPC
+//= Halloween NPC Warper
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Item Exchange Npc
+//= 1.2 Added Map For Hunting Item
+//============================================================
+prontera,148,191,4	script	Halloween Ticket Exchanger	791,{
+
+	mes "[Maria]";
+	mes "Hello!";
+	mes "Would you like to Exchange your Halloween Ticket";
+	menu "Next",H_02,"Cancel",H_cancel;	
+
+//Item List
+
+H_02:
+menu 
+	"Arch Angel Wings",E1,
+	"Arch Demon Wings",E2,
+	"Witch's Pumpkin Hat",E3,
+	"Cancel",H_cancel;
+
+//choices?
+
+E1:
+	next;
+	mes "[Maria]";
+	mes "Arch Angel Wings";
+	mes "gives +5 Vit and +5 Dex";
+	mes "10k pcs of Halloween Ticket is needed";
+	menu "I want One",E1_1,"Cancel",H_cancel;
+
+E2:
+	next;
+	mes "[Maria]";
+	mes "Arcg Demon Wings";
+	mes "gives +5 Str and +5 Int";
+	mes "10k pcs of Halloween Ticket is needed";
+	menu "I want One",E2_1,"Cancel",H_cancel;
+	
+E3:
+	next;
+	mes "[Maria]";
+	mes "Witch's Pumpkin Hat";
+	mes "Its our halloween event hat for this year";
+	mes "Im sure that there was more to come!";
+	mes "20k pcs of Halloween Ticket is needed";
+	menu "I want One",E3_1,"Cancel",H_cancel;
+
+//exchange me here
+E1_1:
+	if(countitem(7941)<10000)
+	goto E_EE; 
+	delitem 7941,10000;
+	getitem 29064,1;
+	close;
+	
+E2_1:
+	if(countitem(7941)<10000)
+	goto E_EE; 
+	delitem 7941,10000;
+	getitem 29065,1;
+	close;
+
+E3_1:
+	if(countitem(7941)<20000)
+	goto E_EE; 
+	delitem 7941,20000;
+	getitem 18656,1;
+	close;
+
+//cancellation
+H_cancel:
+		next;
+		mes "[Maria]";
+		mes "Ok then see you later";
+		close;
+E_EE:
+		next;
+		mes "[Maria]";
+		mes "Not enough Halloween Tickets";
+		mes "Please Come and See Me Agian";
+		close;
+}
+
+poring_w02,101,81,4	script	Halloween Event NPC	791,3,3,{
+
+		function	RandomizeItem;
+		
+while( 1 ){
+mes "How can i help you ?";
+switch( select( "Information:Farm Items" )){
+case 1:
+	mes "This is a Farm Zone.";
+	mes "You are able to Hunt Monster inside this Room.";
+	mes "Every Monster will award you random items.";
+	next;
+	mes "But there is some Condition..";
+	mes "You can only go in ^FF0000once every "+.RoomCleanMin+" minutes for 1 times.^000000";
+	mes "And Maximum of ^FF0000"+.MaxPlayers+" Players per "+.RoomCleanMin+" Minutes.^000000";
+	mes "Maximum Hunting Limit ^FF0000"+.MaxItemLimit+"^000000";
+	next;
+	mes "There will be a ^FF0000Room Cleaning^000000 from time to time...";
+	mes "All players will be kicked out, it is your bad luck if you meet this.";
+	mes "Delay will still apply even though you just go in for 1 Seconds..";
+	next;
+	break;
+
+case 2:
+
+	if( #HuntRoomDelay > gettimetick(2) ){
+		set .last,#HuntRoomDelay - gettimetick(2);
+		set .@min,  .last % ( 24 * 3600 ) % 3600 / (60);
+		mes "Wait for ^FF0000"+.@min+" Minutes^000000.";
+		close;
+	}else if( getarraysize( .Hunter ) >= .MaxPlayers ){
+		mes "Currently the Room is Full. Please try again later.";
+		close;
+	}else{
+		warp .Map$,0,0;
+		set .Hunter[getarraysize( .Hunter )],strcharinfo(0);
+		set #HuntRoomDelay,gettimetick(2) + ( .DelayMin * 60 );
+		set #FarmHunt,0;
+		end;
+		}
+	}
+}
+
+OnInit:
+// Maximum Player can join per X Minutes.
+set .MaxPlayers,99999;
+// Adding X Minutes of Delay before can go in again.
+set .DelayMin,15;
+// Maximum Hunt Limit per round inside the Zone.
+set .MaxItemLimit,200;
+// Map that will be used in thos Zone.
+set .Map$,"jupe_core2";
+// Clear Map Every X Minutes.
+set .RoomCleanMin,15;
+// Mapflag Initialization
+setmapflag .Map$,mf_nogo;
+setmapflag .Map$,mf_nomobloot;
+setmapflag .Map$,mf_nomvploot;
+setmapflag .Map$,mf_nowarpto;
+setmapflag .Map$,mf_nochat;
+setmapflag .Map$,mf_novending;
+setmapflag .Map$,mf_nocommand,60;
+setmapflag .Map$,mf_nogo;
+setmapflag .Map$,mf_nojobexp;
+setmapflag .Map$,mf_nobaseexp;
+
+while( 1 ){
+	killmonster .Map$,"All";
+	mapwarp .Map$,"prontera",155,181;
+	monster .Map$,0,0,"[ Farm Zone ] Resident",-1,80,strnpcinfo(0)+"::OnNormalKill";
+	monster .Map$,0,0,"[ Farm Zone ] Guardian",-3,5,strnpcinfo(0)+"::OnBossKill";
+	deletearray .Hunter,getarraysize( .Hunter );
+	announce "[ Farm Zone ] : Farming Zone has been Cleaned up, another 5 Players may go in now.",bc_blue;
+	sleep ( .RoomCleanMin * 60000 );
+	mapannounce .Map$,"[ Farm Zone ] : Room Clean Up now...All Users will be warped Out.",0;
+	killmonster .Map$,"All";
+	sleep 3000;
+	}
+end;
+
+OnNormalKill:
+RandomizeItem( 0,rand(1,5) );
+monster .Map$,0,0,"--ja--",-1,1,strnpcinfo(0)+"::OnNormalKill";
+end;
+
+OnBossKill:
+RandomizeItem( 1,rand(1,3) );
+monster .Map$,0,0,"--ja--",-3,1,strnpcinfo(0)+"::OnBossKill";
+end;
+
+// Function that used to Generate Random Items
+
+function	RandomizeItem	{
+set #FarmHunt,#FarmHunt + getarg(1);
+
+// Normal Monster in Zone Drops Lists
+if( getarg(0) == 0 ) setarray .ItemList[0],7941;
+// Normal Boss in Zone Drops Lists
+if( getarg(0) == 1 ) setarray .ItemList[0],7941;
+
+for( set .@i,1; .@i <= getarg(1); set .@i,.@i + 1 ){
+	getitem .ItemList[ rand( getarraysize( .ItemList ) ) ],1;
+	}
+deletearray .ItemList,getarraysize( .ItemList );
+dispbottom "[ Farm Zone ] : Farmed "+#FarmHunt+" / "+.MaxItemLimit+" Items";
+if( #FarmHunt >= .MaxItemLimit ){
+	message strcharinfo(0),"Limit Reach , you may join again later.";
+	sleep2 2000;
+	warp "prontera",155,181;
+
+	}
+return;
+
+OnTouch:
+showevent 4,0;
+}
+
+}

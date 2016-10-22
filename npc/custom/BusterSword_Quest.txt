@@ -1,0 +1,57 @@
+glast_01,41,364,4	script	Cavendish	989,{
+
+	mes "[Cavendish]";
+	mes "I already killed Cloud Strife";
+	mes "The only left is this sword";
+	mes "If you have items! I will give it!!!";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Buster Sword",W_Buster,
+	"Nothing",W_cancel;
+	
+W_Buster:
+
+	next;
+	mes "Buster Sword is a long Heavy Sword";
+	mes "Dex-10,Hit-20,Pierces Def";
+	mes "Enables power to change weapon Element";
+	mes "35% Chance to Double Attack, Autocast lvl 7 Meteor Storm.";
+	mes "-=-=THINGS YOU NEED=-=-";
+	mes "2x Executioner's Mitten";
+	mes "20x Bloody Edge";
+	mes "30x Blade Lost in Darkness";
+	mes "20x Mother's Nightmare";
+	mes "50x Foolishness of the Blind";
+	menu "Make",W_1,"Back to Menu",W_01;
+ 
+ 
+W_1:
+	if(countitem(7017)<2 || countitem(7024)<20 || countitem(7023)<30 || countitem(7020)<20 || countitem(7021)<50)
+	goto W_insufficient; 
+	delitem 7017,2;
+	delitem 7024,20;
+	delitem 7023,30;
+	delitem 7020,20;
+	delitem 7021,50;
+	getitem 1198,1;
+	close;
+ 
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Cavendish]";
+	mes "You don't have the required materials.";
+	mes "Please come back when you do...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}

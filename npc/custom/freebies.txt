@@ -1,0 +1,42 @@
+poring_w02,101,82,4	script	HBD Admin 6-23-16	718,{
+	
+	if(#freebie_quest <=1){
+	mes "[Santa]";
+	mes "Nice to meet you "+ strcharinfo ( 0 ) +", my name is Stanta";
+	mes "Its [ADMIN] Darkiostream's Birthday at 6-23-16!";
+	mes "Join and Celebrate with us on this date";
+	mes "We Prepare a good event for you guys!";
+next;
+	mes "[Birthday]";
+	mes "Have fun in DeathRO!";
+	//sc_start SC_EXPBOOST,3600000,100;
+	//sc_start SC_ITEMBOOST,3600000,0;
+	//skilleffect 34,0; sc_start SC_BLESSING,3600000,20;
+	//skilleffect 29,0; sc_start SC_INCREASEAGI,3600000,20;
+	//skilleffect 361,0; sc_start SC_ASSUMPTIO,3600000,5;
+	getitem	5060,3;
+	getitem	13807,3;
+	//getitem	2524,1;
+	//getitem	2421,1;
+	//getitem	2115,1;
+	//getitem	13758,1;
+	//getitem	4121,2;
+	//getitem	4142,2;
+	//getitem	4305,2;
+	//getitem	4035,2;
+	//getitem	4047,1;
+	//getitem	4174,1;
+	//set Zeny,Zeny+25000;
+	set #freebie_quest,2;
+close;
+	}
+
+if(#freebie_quest > 1) {
+	mes "[Free Buffs]";
+	mes "Have fun in ^E066FFDeath RO!^000000";
+	skilleffect 34,0; sc_start SC_BLESSING,3600000,20;
+	skilleffect 29,0; sc_start SC_INCREASEAGI,3600000,20;
+	close;
+	}
+	
+}

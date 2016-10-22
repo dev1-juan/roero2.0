@@ -1,0 +1,166 @@
+//===== rAthena Script ======================================= 
+//= Wor
+//===== By: ================================================== 
+//= Newhackzone
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: ========================================= 
+//= Thank to this hercules user Bringer.
+//= Link to his work http://herc.ws/board/topic/9375-war-over-rune-script/
+//=	
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Relocate battle ground location.
+//= 1.2 Add Cell Block
+//= 1.3 
+//============================================================
+
+//Registration NPC
+prontera,142,174,4	script	WoR Manager	734,{
+	set look,rand(1,2);
+	set .@name$,"[WoR Manager]";
+	mes .@name$;
+	mes "Greetings, how can be any help for you today?";
+	menu 	
+	"I want to Participate",register,
+	"What is WoR?",what_is_wor,
+	"I'm just passing by",im_just_passing_by;
+register:
+	if ( $@wor == 1 ) {
+		next;
+		if ( woralready == 1 ) {
+		mes .@name$;	
+		mes "I'm sorry adventurer, but leaving the arena means quitting the entire event. Please try again next time.";
+	close;
+	}	
+	if ( look == 1 ) {	
+	mes .@name$;	
+	mes "You will be participating in the '^0000FFBlue Team^000000'.";
+	close2;
+	setlook 7,374;
+	warp "bat_b01",319,150;
+	set woralready,1;
+	end;
+	}
+	mes .@name$;
+	mes "You will be participating in the '^FF0000Red Team^000000'.";
+	close2;	
+	setlook 7,407;
+	warp "bat_b01",79,151;
+	set woralready,1;
+	end;
+}
+next;
+mes .@name$;
+mes "The War Over Rune is not available during this hour, please try again next time.";
+close;
+what_is_wor:
+next;
+mes .@name$;
+mes "WoR is the short term for 'War over Rune'.";
+next;
+mes .@name$;
+mes "WoR is a PvP-Based Event where in you have 20 minutes to kill anyone in the opposing team.";
+next;
+mes .@name$;
+mes "There are two teams in the event: The ^0000FFBlue Team^000000 and The ^FF0000Red Team^000000";
+next;
+mes .@name$;
+mes "The Goal of the event is to gain points by killing other team's members.";
+next;
+mes .@name$;
+mes "After 20 minutes, an NPC will appear in the middle of the map to give rewards to players.";
+next;
+mes .@name$;
+mes "The reward for the winning team is 100 PvP Points and 20 PvP Points for the losing team.";
+close;
+im_just_passing_by:
+next;
+mes .@name$;
+mes "Okay, see yah later.";
+close;
+
+//Player Dies in the event
+set red_score,0;
+set blue_score,0;
+set deaths_player_red,0;
+set deaths_player_blue,0;
+
+OnPCDieEvent:	
+if( strcharinfo(3) == "prt_are01" && getlook(7) == 374 ) {
+	set red_score,red_score+1;
+	set deaths_player_red,deaths_player_red+1;
+	warp "prt_are01",76,76;
+	sleep2 1000;	
+	atcommand "@alive";
+	repair(1);repair(2);repair(3);repair(4);repair(5);repair(6);repair(7);repair(8);repair(9);repair(10);	
+	sleep2 10000;
+	switch(rand(1,2)) {
+	case 1:	warp "prt_are01",104,104;
+	case 2:	warp "prt_are01",103,196;
+	end;		
+	}	
+	if( strcharinfo(3) == "prt_are01" && getlook(7) == 407 ) {		
+		set blue_score,blue_score+1;		
+		set deaths_player_blue,deaths_player_blue+1;		
+		warp "prt_are01",223,223;			
+		sleep2 1000;			
+		atcommand "@alive";
+		repair(1);repair(2);repair(3);repair(4);repair(5);repair(6);repair(7);repair(8);repair(9);repair(10);
+		sleep2 10000;
+		switch(rand(1,2)) {
+		case 1:	warp "prt_are01",169,196;
+		case 2:	warp "prt_are01",196,103;
+		end;
+			}
+		}
+	}
+}
+
+//Team NPC (Red Team)
+prt_are01,75,75,6	script	Red Team Manager	733,{
+	mes "[Team Manager]";
+	mes "What do you want to know?";
+	menu 	
+	"Standings",standings_red;
+standings_red:	
+	next;	
+	mes "[Team Manager]";	
+	mes "Red Team: "+red_score+"";	
+	mes "Blue Team: "+blue_score+"";	
+	mes "Death(s): "+deaths_player_red+"";
+	close;
+	}
+//Team NPC (Blue Team)
+prt_are01,225,225,3	script	Blue Team Manager	733,{
+		mes "[Team Manager]";
+	mes "What do you want to know?";
+	menu 	
+	"Standings",standings_Blue;
+standings_Blue:
+		mes "[WoR Score]";	
+		mes "[ ^ff0000Blue^000000 ] - "+blue_score+" Points";
+		mes "[ ^3355FFRed^000000 ] - "+red_score+" Points";	
+		mes "Your total Deaths - "+deaths_player_blue+"";
+		close;
+		}
+
+//Map walkable
+-	script	prt_are01_walkdis	-,{
+OnTouch:
+//setcell "prt_are01",58,153,58,146,cell_walkable,0;
+//setcell "prt_are01",241,153,241,146,cell_walkable,0;
+setcell "prt_are01",198,103,196,101,cell_walkable,0;
+setcell "prt_are01",215,79,220,84,cell_walkable,0;
+setcell "prt_are01",153,242,146,242,cell_walkable,0;
+setcell "prt_are01",148,211,151,211,cell_walkable,0;
+setcell "prt_are01",103,198,101,196,cell_walkable,0;
+setcell "prt_are01",198,103,196,101,cell_walkable,0;
+setcell "prt_are01",151,88,148,88,cell_walkable,0;
+setcell "prt_are01",151,212,148,212,cell_walkable,0;
+setcell "prt_are01",84,220,79,215,cell_walkable,0;
+end;
+}
+

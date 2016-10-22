@@ -1,0 +1,110 @@
+poring_w02,96,41,8	script	Wing Goddess	435,{
+
+	mes "[Wing Goddess]";
+	mes "I can help you make a wing,";
+	mes "if you bring me the right items.";
+	goto W_01;
+
+
+//_____________Wing List_______________//
+
+W_01:
+menu 
+	"Arch Angel Wings",W_archangel,
+	"Dark Angel Wings",W_darkangel,
+	"Arch Demon Wings",W_archdemon,
+	"Nothing",W_cancel;
+	
+W_archangel:
+
+	next;
+	mes "[Wing Goddess]";
+	mes "Arch Angel Wings +5 dex and int";
+	next;
+	mes "[Wing Goddess]";
+	mes "THINGS YOU NEED:";
+	mes "1x Angel Wing";
+	mes "200x Feather of Birds";
+	mes "200x Fluffs";
+	mes "300x Feathers";
+	menu "Make",W_archange,"Back to Menu",W_01;
+ 
+W_darkangel:
+
+	next;
+	mes "[Wing Goddess]";
+	mes "Dark Angel Wings +5 str and vit";
+	next;
+	mes "[Wing Goddess]";
+	mes "THINGS YOU NEED:";
+	mes "1x Evil Wing";
+	mes "200x Burning Hair";
+	mes "200x Burning Heart";
+	mes "300x Brigan";
+	menu "Make",W_darkange,"Back to Menu",W_01;
+
+W_archdemon:
+
+	next;
+	mes "[Wing Goddess]";
+	mes "Arch Demon Wings +5 agi and dex";
+	next;
+	mes "[Wing Goddess]";
+	mes "THINGS YOU NEED:";
+	mes "1x Ghost Bandana";
+	mes "200x Talon";
+	mes "200x Garlet";
+	mes "300x Wing of Red Bat";
+	menu "Make",W_archdemo,"Back to Menu",W_01;
+
+
+ 
+ 
+ 
+ 
+W_archange:
+	if(countitem(2254)<1 || countitem(916)<200 || countitem(914)<200 || countitem(949)<300)
+	goto W_insufficient; 
+	delitem 2254,1;
+	delitem 916,200;
+	delitem 914,200;
+	delitem 949,300;
+	getitem 29001,1;
+	close;
+ 
+ 
+W_darkange:
+	if(countitem(2255)<1 || countitem(7122)<200 || countitem(7097)<200 || countitem(7054)<300)
+	goto W_insufficient; 
+	delitem 2255,1;
+	delitem 7122,200;
+	delitem 7097,200;
+	delitem 7054,300;
+	getitem 29000,1;
+	close;
+
+
+W_archdemo:
+	if(countitem(2274)<1 || countitem(917)<200 || countitem(910)<200 || countitem(7006)<300)
+	goto W_insufficient; 
+	delitem 2274,1;
+	delitem 917,200;
+	delitem 910,200;
+	delitem 7006,300;
+	getitem 29006,1;
+	close;
+ 
+//________not enough or not the correct items________
+	
+W_insufficient:
+	next;
+	mes "[Wing Quest Goddess]";
+	mes "You don't have the required materials.";
+	mes "Please come back when you do...";
+	menu "Return to Main Menu",W_01,"Leave",W_cancel;
+	close;
+	
+W_cancel:
+	close;
+
+}

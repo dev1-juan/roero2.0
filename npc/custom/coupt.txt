@@ -1,0 +1,52 @@
+poring_w02,82,101,4	script	Berry Exchanger	719,{
+
+    set @name$,"[^FF0000Berry Exchanger^000000]";
+    mes @name$;
+    mes "What do you want to do?";
+    next;
+    switch(select("Information","Convert")) {
+
+        case 1:
+            mes @name$;
+            mes "I can convert your Coupon/s into Berry and vice versa.";
+            mes "1 Coupon = 100 Yggdrasil Berry";
+            close;
+
+        case 2:
+            switch(select("Berry to Coupon","Coupon to Berry")) {
+
+                case 1:
+                    if(countitem(607) < 100) goto noBerry;
+                    if (checkweight(7037,1) == 0 ) goto overWeight;
+                    delitem 607,100;
+                    mes @name$;
+                    mes "There you go. Hope to see you again!";
+                    getitem 7037,1;
+                    close;
+
+                case 2:
+                    if(countitem(7037) < 1) goto noCoupon;
+                    if (checkweight(607,100) == 0 ) goto overWeight;
+                    delitem 7037,1;
+                    mes @name$;
+                    mes "There you go. Hope to see you again!";
+                    getitem 607,100;
+                    close;
+    }
+            }
+            end;
+noBerry:
+    mes @name$;
+    mes "I'm Sorry but you don't have enough berries.";
+    close;
+
+overWeight:
+    mes @name$;
+    mes "Sorry you're overweight.";
+    close;
+
+noCoupon:
+    mes @name$;
+    mes "I'm Sorry but you don't have Coupons.";
+    close;
+}

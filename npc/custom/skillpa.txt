@@ -1,0 +1,29 @@
+
+poring_w02,121,77,1	script	Skill Point Adder?	436,{
+set .BuyCost,10000;
+set .SellCost,1000;
+switch(select("Buy Skill Points:Sell Skill Points")){
+	Case 1:
+		mes "How many Skill Points you want to Buy ?";
+		mes "Each Cost "+.BuyCost+" Zeny.";
+		mes "You may input between 0 ~ "+Zeny/.BuyCost+" ";
+		input @Amount,0,Zeny/.BuyCost;
+		if( @Amount == 0 ) close;
+		next;
+		mes "Gained "+@Amount+" Skill Points.";
+		set SkillPoint,SkillPoint + @Amount;
+		set Zeny, Zeny - ( @Amount * .BuyCost );
+		close;
+	Case 2:
+		mes "How many Skill Points you want to Sell ?";
+		mes "Each give you "+.SellCost+" Zeny.";
+		mes "You may input between 0 ~ "+SkillPoint+" ";
+		input @Amount,0,SkillPoint;
+		if( @Amount == 0 ) close;
+		next;
+		mes "Gained "+@Amount * .SellCost +" Zeny.";
+		set SkillPoint,SkillPoint - @Amount;
+		set Zeny, Zeny + ( @Amount * .SellCost );
+		close;
+	}
+}

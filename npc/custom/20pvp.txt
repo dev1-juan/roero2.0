@@ -1,0 +1,27 @@
+job_star,101,38,4	script	AeRO 2.0 Manager	106,{
+
+	mes "[Gernan]";
+	mes "You Won +20 pvp points";
+	#CASHPOINTS += 20;
+	dispbottom "You now have " +#CASHPOINTS+ " PvP points.";
+	set lms,0;
+next;
+		warp "poring_w02",99,72;
+		close;
+}
+
+// mapflag
+
+job_star	mapflag	nowarpto
+job_star	mapflag	nowarp
+job_star	mapflag	noteleport
+job_star	mapflag	nomemo
+job_star	mapflag	nosave	SavePoint
+job_star	mapflag	nobranch
+job_star	mapflag	noicewall
+job_star	mapflag	nopenalty
+job_star	mapflag	nobranch
+job_star	mapflag	noexp
+job_star	mapflag	noreturn
+job_star	mapflag	pvp_noparty
+job_star	mapflag	restricted	1

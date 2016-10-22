@@ -1,0 +1,96 @@
+Askydun,86,97,4	script	POD Refiner	826,{
+mes "^3355FF[%100 Refiner]^000000";
+mes "This Lets you refine your item to the max";
+mes " You Need 1 Proof of Donation to use my Service";
+next;
+mes "Choose the item to refine";
+mes "Choose Wisely";
+mes "Dont Ask For refine";
+mes "On GameMasters";
+mes "Think Before you refine an item";
+next;
+menu "Upper Headgear",L0,"Middle Headgear",L1,"Lower Headgear",L2,"Armor",L3,"Left Hand",L4,"Right Hand",L5,"Garment",L6,"Shoes",L7,"Right Accesories",L8,"Left Accesories",L9,"Cancel",LEnd;
+
+L0:
+if(countitem(7179) < 1 ) goto LNotEnough;
+atcommand "@refine 256 +10";
+delitem 7179,1;
+announce "["+strcharinfo(0)+"], Thanks for using my great service :)).",bc_self,0;
+close;
+
+L1:
+if(countitem(7179) < 1 ) goto LNotEnough;
+atcommand "@refine 512 +10";
+delitem 7179,1;
+announce "["+strcharinfo(0)+"], Thanks for using my great service :)).",bc_self,0;
+close;
+
+L2:
+if(countitem(7179) < 1 ) goto LNotEnough;
+atcommand "@refine 1 +10";
+delitem 7179,1;
+announce "["+strcharinfo(0)+"], Thanks for using my great service :)).",bc_self,0;
+close;
+
+L3:
+if(countitem(7179) < 1 ) goto LNotEnough;
+atcommand "@refine 16 +10";
+delitem 7179,1;
+announce "["+strcharinfo(0)+"], Thanks for using my great service :)).",bc_self,0;
+close;
+
+L4:
+if(countitem(7179) < 1 ) goto LNotEnough;
+atcommand "@refine 32 +10";
+delitem 7179,1;
+announce "["+strcharinfo(0)+"], Thanks for using my great service :)).",bc_self,0;
+close;
+
+L5:
+if(countitem(7179) < 1 ) goto LNotEnough;
+atcommand "@refine 128 +10";
+delitem 7179,1;
+announce "["+strcharinfo(0)+"], Thanks for using my great service :)).",bc_self,0;
+close;
+
+L6:
+if(countitem(7179) < 1 ) goto LNotEnough;
+atcommand "@refine 4 +10";
+delitem 7179,1;
+announce "["+strcharinfo(0)+"], Thanks for using my great service :)).",bc_self,0;
+close;
+
+L7:
+if(countitem(7179) < 1 ) goto LNotEnough;
+atcommand "@refine 64 +10";
+delitem 7179,1;
+announce "["+strcharinfo(0)+"], Thanks for using my great service :)).",bc_self,0;
+close;
+
+L8:
+if(countitem(7179) < 1 ) goto LNotEnough;
+atcommand "@refine 128 +10";
+delitem 7179,1;
+announce "["+strcharinfo(0)+"], Thanks for using my great service :)).",bc_self,0;
+close;
+
+L9:
+if(countitem(7179) < 1 ) goto LNotEnough;
+atcommand "@refine 8 +10";
+delitem 7179,1;
+announce "["+strcharinfo(0)+"], Thanks for using my great service :)).",bc_self,0;
+close;
+
+LEnd:
+mes "[100% Refiner]";
+mes "Thank you for using 100% Refiner";
+close;
+
+LNotEnough:
+mes "[100% Refiner]";
+mes "You dont Have Sufficient Proof of Donation to make this transaction";
+close;
+}
+
+
+poring_w02,79,101,4	duplicate(POD Refiner)	POD Refiner#1	826
