@@ -1,10 +1,8 @@
-// Fixed some Bug. [ By Goddameit ]
-
 // Leave this alone...
 -	shop	Item Shop	-1,512:1
 
 
-prontera,181,215,3	script	TCG Shop	873,{
+prontera,181,215,3	script	Donation Shop	873,{
 // NPC Name
 set .name$,"[^FF0000  AeRO Shop  ^000000]";
 
@@ -67,11 +65,11 @@ CaseCH:
 	{
 		case 1:
 			// Item Currency
-			set @Currency,7227;
+			set @Currency,7179;
 			// Item ID Lists
-			setarray .ItemLists[0],2357,2524,2421,1225,1238,13024,13583,13582,12214,14545,13758,12210,12902,5294,5304,5466,5502,5529,9088,9089,9090,12103,5263,5224,5022,5123,5032,5059,5029,5281,5409;
+			setarray .ItemLists[0],2629,2630,1530,5013,5137,2410,25010,29060,2218,2541,2383,29002,29003,29014,29005,29004,29007;
 			// Item Price
-			setarray .ItemPrice[0],100,100,100,100,100,100,1000,150,40,50,950,10,450,10000,10000,10000,15000,15000,50,50,50,14,500,800,1000,500,20,50,20,500,500;
+			setarray .ItemPrice[0],100,100,100,100,100,100,150,150,80,150,150,150,150,100,50,50,50;
 			return;
 		// Case 4,5,6.....etc...
 
